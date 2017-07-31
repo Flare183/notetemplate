@@ -71,7 +71,7 @@
             margin-top: 1px;
             margin-bottom: 2px;
             word-wrap: normal;
-
+            float: left;
         }
 
         #copy-button, #reset-button{
@@ -179,14 +179,12 @@
 
     <hr>
 
-    <div v-if="current.name === 'FiOS'"> <!-- FIOS START -->
+   <!-- <div v-if="current.name === 'FiOS'"> <!-- FIOS START
         <label for="btn">BTN</label>
-        <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" />
+        <!-- maxlength="10" <input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" />
 
         <label for="ctn">CTN</label>
-        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" />
-
-        <label for="account-holder">Acct Holder</label>
+        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" /><label for="account-holder">Acct Holder</label>
         <input placeholder="Account Holder's Name" type="text" name="account-holder" v-model="accountHolder" />
 
         <label for="speaking-with">Speaking With</label>
@@ -281,7 +279,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
             <option v-for="option in surveyOptions" :value="option">{{ option }}</option>
         </select>
 
-    </div>
+    </div> -->
     <div v-if="current.name === 'POTS'">
 
         <label for="btn">BTN</label>
@@ -379,6 +377,7 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
         <select name="outage" v-model="outage">
             <option v-for="option in outageOptions" :value="option">{{ option }}</option>
         </select>
+
         <hr>
         <label for="modem">Modem</label>
         <select name="modem" v-model="modem">
@@ -399,10 +398,6 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
         <input type="text" placeholder="Other Lights (ex. Ethernet Light Off, Wifi Light Off" name="dsllightso" v-model="dsllightso" />
 
         <hr>
-        <label for="area-of-high-demand">AOHD</label>
-        <select name="area-of-high-demand" v-model="areaOfHighDemand">
-            <option v-for="option in areaOfHighDemandOptions" :value="option">{{ option }}</option>
-        </select>
 
         <label for="filters">Checked Filters</label>
         <select name="filters" v-model="filters">
@@ -420,6 +415,11 @@ OBSERVED NOISE MARGIN (DB):15 15
 SIGNAL ATTENUATION (DB):29 14" name="loopcare" cols="20" rows="5" v-model="loopcare"></textarea>
 
         <hr >
+
+        <label for="area-of-high-demand">AOHD</label>
+        <select name="area-of-high-demand" v-model="areaOfHighDemand">
+            <option v-for="option in areaOfHighDemandOptions" :value="option">{{ option }}</option>
+        </select>
 
         <label for="OpenSO">Open TT/SO</label>
         <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
@@ -640,7 +640,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                     ],
                     uniqueFields: ['modem', 'lights', 'lightsAfterPc', 'areaOfHighDemand', 'loopcare', 'radius', 'dsllightso']
                 },
-                {
+                /*{
                     name: 'FiOS',
                     attributes: [
                         [
@@ -678,7 +678,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                         ]
                     ],
                     uniqueFields: ['router', 'ontstatus', 'setTopBox', 'phoneType', 'opticalNetworkTerminal', 'multiDwellingUnit', 'staticIp']
-                },
+                }, */
                 {
                     name: 'PHAT',
                     attributes: [
@@ -810,7 +810,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                 outageOptions: [
                     '',
                     'No Outages Present',
-                    'Customer is in an Outage'
+                    'Customer is in an Outage',
+                    'Customer is currently Trending'
                 ],
                 filtersOptions: [
                     '',
