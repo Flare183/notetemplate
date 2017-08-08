@@ -1,217 +1,353 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<!-- Note template created by Charles Yost / Joseph Moran --
-  -- Contributers:
-  -- Jesse N. Richardson 
-  -- Thomas Edwards     
--->
-<head>
-    <link rel="icon" type="image/png" href="favicon.ico">
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <meta charset="UTF-8">
-    <title>Note Template</title>
-    <style>
-        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Note template created by Charles Yost / Joseph Moran --
+    -- Contributors:
+    -- Jesse N. Richardson 
+    -- Thomas Edwards     
+    -->
+    <head>
+        <link rel="icon" type="image/png" href="favicon.ico">
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <meta charset="UTF-8">
+        <title>Note Template</title>
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
 
-        html {background: #cfe7fa; /* Old browsers */
-            background: -moz-radial-gradient(center, ellipse cover, #cfe7fa 0%, #6393c1 100%); /* FF3.6-15 */
-            background: -webkit-radial-gradient(center, ellipse cover, #cfe7fa 0%,#6393c1 100%); /* Chrome10-25,Safari5.1-6 */
-            background: radial-gradient(ellipse at center, #cfe7fa 0%,#6393c1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfe7fa', endColorstr='#6393c1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-            font-family: 'roboto', 'sans-serif';
-        }
+            body {
+                background: white;
+                font-family: 'roboto', 'sans-serif';
+            }
+            #content {
+                max-width: 678px;
+                margin: 20px auto;
+            }
+            #panel {
+                background-color: #EEE;
+                padding: 10px;
+                box-shadow: 1px 1px 2px rgba(0, 0, 0, .25);
+                position:relative;
+            }
+            #pickerButton {
+                position:absolute;
+                right:0;
+                top:0;
+                margin-top:26px;
+                margin-right:26px;
+                padding:10px;
+            }
+            #pickerButton:hover {
+                background:#606060;
+                fill: #eeeeee;
+                cursor:pointer;
+            }
+            #pickerButton.active {
+                background:linear-gradient(to right, #dbdbdb 5%, #606060);
+                fill: #eeeeee;
+                cursor:pointer;
+            }
+            #colourSelector {
+                margin-right:26px;
+                margin-top:26px;
+                padding:5px;
+                background:#dbdbdb;
+                display:none;
+                position:absolute;
+                right:40px;
+                top:0;
+                overflow:hidden;
+            }
+            #colourSelector.active {
+                display:flex;
+            }
+            #colourSelector .swatch {
+                width:32px;
+                height:32px;
+                background-color:#111;
+                display:inline-block;
+            }
 
-        body {
-            background-color: #EEE;
-            padding: 10px;
-            margin: 20px auto;
-            max-width: 678px;
-            border: 2px solid rgba(255, 255, 255, 0);
-            border-radius: 5px;
-            box-shadow: 0 0 2px #000000;
-        }
+            #hue {
+                margin-left:5px;
+                width: 30px;
+                height: 180px;
+                position:relative;
+                background: -moz-linear-gradient(bottom, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+                background: -ms-linear-gradient(bottom, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+                background: -o-linear-gradient(bottom, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+                background: -webkit-gradient(linear, bottom, top, from(#ff0000), color-stop(0.17, #ffff00), color-stop(0.33, #00ff00), color-stop(0.5, #00ffff), color-stop(0.67, #0000ff), color-stop(0.83, #ff00ff), to(#ff0000));
+                background: -webkit-linear-gradient(bottom, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+                background: linear-gradient(to top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+            }
+            #brightness {
+                background: #f06;
+                background: radial-gradient(circle at top right, red 20%, transparent 80%);
+                min-height: 100%;
+                width:256px;
+                height:256px;  
+                position:relative;
+                z-index:1;
+                width:180px;
+                height: 180px;
+            }
+            #brightness:before, #brightness:after {
+                content:'';
+                position:absolute;
+                width:100%;
+                height:100%;
+                opacity: 0.8;
+            }
+            #brightness:after {
+                background: linear-gradient(transparent 5%, black 90%);
+                z-index:3;
+                bottom:0;
+                right:0;
+            }
+            #brightness .picker {
+                position:absolute;
+                left: 88.2px;
+                top: 43.2px;
+                width:6px;
+                height:6px;
+                border:solid 1px white;
+                background:rgba(0,0,0,0.5);
+                border-radius:100%;
+                z-index:4;
+                transform: translate(-3px, -3px);
+                pointer-events: none;
+            }
 
-        h1 {
-            color: #333;
-            font-size: 1.6em;
-            text-shadow: 0 0 1px #29b;
-            text-align: center;
-        }
-        hr {
-            margin: 20px 0;
-            display: block;
-        }
-        ::-webkit-input-placeholder { /* Chrome */
-            color: #e3dfe1;
-        }
-        :-ms-input-placeholder { /* IE 10+ */
-            color: #e3dfe1;
-        }
-        ::-moz-placeholder { /* Firefox 19+ */
-            color: #e3dfe1;
-            opacity: 1;
-        }
+            #hue .picker {
+                height:4px;
+                width:100%;
+                border:solid 1px white;
+                background:rgba(0,0,0,0.5);
+                position:absolute;
+                top:75.49px;
+                transform: translate(-1px, -3px);
+                pointer-events: none;
+            }
 
-        label, button, textarea {
-            display: block;
-        }
+            #ie-1 {
+                height:17%;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0000', endColorstr='#ffff00');
+            }
+            #ie-2 {
+                height:16%;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff00', endColorstr='#00ff00');
+            }
+            #ie-3 {
+                height:17%;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ff00', endColorstr='#00ffff');
+            }
+            #ie-4 {
+                height:17%;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffff', endColorstr='#0000ff');
+            }
+            #ie-5 {
+                height:16%;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0000ff', endColorstr='#ff00ff');
+            }
+            #ie-6 {
+                height:17%;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff00ff', endColorstr='#ff0000');
+            }
 
-        input:not(.checkbox), select{
-            width: 100%;
-            padding: 5px;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-        textarea{
-            width: 100%;
-            padding: 5px;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;}
 
-        label {
-            margin-top: 1px;
-            margin-bottom: 2px;
-            word-wrap: normal;
+            h1 {
+                color: #333;
+                font-size: 1.6em;
+                text-align: center;
+            }
+            hr {
+                margin: 20px 0;
+                display: block;
+                border-color: silver;
+                border-width:1px;
+            }
+            ::-webkit-input-placeholder { /* Chrome */
+                color: #e3dfe1;
+            }
+            :-ms-input-placeholder { /* IE 10+ */
+                color: #e3dfe1;
+            }
+            ::-moz-placeholder { /* Firefox 19+ */
+                color: #e3dfe1;
+                opacity: 1;
+            }
 
-        }
+            label, button, textarea {
+                display: block;
+            }
 
-        #copy-button, #reset-button{
-            width: 48%;
-            -moz-box-shadow:inset 2px 10px 6px -4px #29bbff;
-            -webkit-box-shadow:inset 2px 10px 6px -4px #29bbff;
-            box-shadow:inset 2px 10px 6px -4px #29bbff;
-            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2dabf9), color-stop(1, #0688fa));
-            background:-moz-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
-            background:-webkit-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
-            background:-o-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
-            background:-ms-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
-            background:linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
-            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2dabf9', endColorstr='#0688fa',GradientType=0);
-            background-color:#2dabf9;
-            -moz-border-radius:4px;
-            -webkit-border-radius:4px;
-            border-radius:4px;
-            border:1px solid #0b0e07;
-            box-sizing: border-box;
-            display: inline-block;
-            cursor:pointer;
-            color:#ffffff;
-            margin: 10px 0;
-            font-family:Verdana;
-            font-size:18px;
-            font-weight:bold;
-            padding:3px 10px;
-            text-decoration:none;
-            text-shadow:0px 1px 0px #263666;
-        }
+            input:not(.checkbox), select{
+                width: 100%;
+                padding: 10px;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                border:none;
+                outline:none;
+                font-family:inherit;
+            }
+            textarea{
+                width: 100%;
+                padding: 5px;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                border: none;
+                resize: none;
+                padding: 10px;
+                outline:none;
+                font-family:inherit;
+            }
 
-        .main-nav > span{
-            width: 15%;
-            -moz-box-shadow:inset 2px 10px 6px -4px #29bbff;
-            -webkit-box-shadow:inset 2px 10px 6px -4px #29bbff;
-            box-shadow:inset 2px 10px 6px -4px #29bbff;
-            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2dabf9), color-stop(1, #0688fa));
-            background:-moz-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
-            background:-webkit-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
-            background:-o-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
-            background:-ms-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
-            background:linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
-            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2dabf9', endColorstr='#0688fa',GradientType=0);
-            background-color:#2dabf9;
-            -moz-border-radius:4px;
-            -webkit-border-radius:4px;
-            border-radius:4px;
-            border:1px solid #0b0e07;
-            box-sizing: border-box;
-            display: inline-block;
-            cursor:pointer;
-            color:#ffffff;
-            margin: 10px 0;
-            font-family:Verdana;
-            font-size:18px;
-            font-weight:bold;
-            padding:3px 10px;
-            text-decoration:none;
-            text-shadow:0px 1px 0px #263666;
-        }
+            label {
+                margin-top: 10px;
+                margin-bottom: 5px;
+                word-wrap: normal;
+            }
 
-        #copy-button {
-            float: left;
-        }
+            #copy-button, #reset-button{
+                width: 48%;
+                border:none;
+                box-sizing: border-box;
+                display: inline-block;
+                cursor:pointer;
+                color:#ffffff;
+                margin: 10px 0;
+                font-size:18px;
+                padding:10px 10px;
+                text-decoration:none;
+            }
 
-        #reset-button {
-            float: right;
-        }
+            .main-nav > span{
+                width: 15%;
+                box-sizing: border-box;
+                display: inline-block;
+                cursor:pointer;
+                color:#ffffff;
+                margin: 10px 0;
+                font-size:18px;
+                padding:3px 10px;
+                text-decoration:none;
+                margin-left:5px;
+                margin-right:5px;
+            }
 
-        .clear {
-            clear: both;
-        }
+            #reset-button {
+                float: right;
+            }
 
-        #reset-button:hover, #copy-button:hover, .main-nav > span:hover {
-            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0688fa), color-stop(1, #2dabf9));
-            background:-moz-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
-            background:-webkit-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
-            background:-o-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
-            background:-ms-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
-            background:linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
-            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0688fa', endColorstr='#2dabf9',GradientType=0);
-            background-color:#0688fa;
-        }
+            .clear {
+                clear: both;
+            }
 
-        .hidden {
-            display: none;
-        }
-        .alert.info {background-color: #2196F3;}
-        .alert {
-    padding: 10px;
-    background-color: #f44336;
-    color: white;
-    opacity: 1;
-    transition: opacity 0.6s;
-    margin-bottom: 8px;
-}
-        .closebtn {
-    margin-right: 15px;
-    color: white;
-    font-weight: bold;
-    float: left;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-        .alert.success {background-color: #4CAF50;}
-.alert.info {background-color: #2196F3;}
-.alert.warning {background-color: #ff9800;}
+            .hidden {
+                display: none;
+            }
+            .alert.info {background-color: #2196F3;}
+            .alert {
+                padding: 10px;
+                background-color: #f44336;
+                color: white;
+                opacity: 1;
+                transition: opacity 0.6s;
+                margin-bottom: 8px;
+                display:flex;
+            }
+            .closebtn {
+                margin-right: 5px;
+                margin-left: 5px;
+                color: white;
+                font-weight: bold;
+                float: left;
+                font-size: 22px;
+                line-height: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            .alert.success {background-color: #4CAF50;}
+            .alert.info {background-color: #2196F3;}
+            .alert.warning {background-color: #ff9800;}
 
-.closebtn:hover {
-    color: black;
-    </style>
-    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            .closebtn:hover {
+                color: black;
+            }
+            a {
+                color:inherit;
+                font-weight:100;
+                text-decoration:none;
+            }
+            a.btn {
+                color: whiteSmoke;
+                padding-left:20px;
+                padding-right:20px;
+                padding-top:10px;
+                padding-bottom:10px;
+                display:inline-block;
+            }
+            @media only screen and (max-width: 414px) {
+                body {
+                    margin:0;
+                }
+                #content {
+                    max-width:100vw;
+                    margin:0;
+                }
+                #colourSelector {
+                    position:relative;
+                    margin:5px auto;
+                    right:initial;
+                    left:50%;
+                    transform:translateX(-50%);
+                }
+            }
+        </style>
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-104085079-1', 'auto');
-  ga('send', 'pageview');
+        ga('create', 'UA-104085079-1', 'auto');
 
-</script>
-</head>
-<body>
-<h1>Note Template</h1>
+        ga('send', 'pageview');
+
+        </script>
+    </head>
+<body class="theme-background">
+    <div id="content">
+        <div id="panel">
+        <h1>Note Template</h1>
+        <div id="pickerButton">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+            <title></title>
+            <g id="icomoon-ignore">
+            </g>
+            <path d="M493.255 18.745c-24.994-24.993-65.516-24.993-90.51 0l-86.059 86.059-60.686-60.686-67.882 67.882 53.213 53.213-236.059 236.059c-4.024 4.024-5.734 9.479-5.15 14.728h-0.122v80c0 8.837 7.164 16 16 16h80c0 0 1.332 0 2 0 4.606 0 9.213-1.758 12.728-5.272l236.059-236.059 53.213 53.213 67.882-67.882-60.686-60.686 86.059-86.059c24.993-24.994 24.993-65.516 0-90.51zM86.545 480h-54.545v-54.545l234.787-234.786 54.544 54.544-234.786 234.787z"></path>
+            </svg>
+        </div>
+        <div id="colourSelector">
+            <div id="brightness">
+                <div class="picker"></div>
+            </div>
+            <div id="hue">
+                <div class="picker"></div>
+            </div>
+        </div>
     <div class="alert info">
-  <span class="closebtn">&times;</span>  
-  <strong>Los Angeles Router Upgrade 17th July:</strong> We will be doing a network upgrade in our Los Angeles location on July 17, 2017 at 4pm CST.  We anticipate a network interruption of approximately 1 hour. The website will be down during this period.
-</div>
+        <div class="closebtn">&times;</div>
+        <div>  
+            <strong>Los Angeles Router Upgrade 17th July:</strong> We will be doing a network upgrade in our Los Angeles location on July 17, 2017 at 4pm CST.  We anticipate a network interruption of approximately 1 hour. The website will be down during this period.
+        </div>
+    </div>
 <textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="2"></textarea>
 <div class="form">
 
     <div align="center" class="main-nav clear">
-        <span v-for="type in types" @click="setCurrentType(type)">{{ type.name | capitalize }}</span>
+        <span class="theme-background theme-background-light-hover" v-for="type in types" @click="setCurrentType(type)">{{ type.name | capitalize }}</span>
     </div>
 
     <hr>
@@ -637,17 +773,218 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
 </div>
 <hr />
 
-<button name="copy-button" id="copy-button" data-clipboard-target="#copy-input">Copy</button>
-<button name="clear-button" id="reset-button" type="reset" @click="reset">Reset</button>
+<button name="copy-button" class="theme-background theme-background-light-hover" id="copy-button" data-clipboard-target="#copy-input">Copy</button>
+<button name="clear-button" class="theme-background theme-background-light-hover" id="reset-button" type="reset" @click="reset">Reset</button>
 
 <hr class="clear" />
 
 <h1>Results</h1> <font color="EEEEEE" align="right"> Steven D</font>
 <textarea name="copy" id="copy-input" cols="35" rows="20">{{ summary }}</textarea>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
 <script>
+
+    $(document).ready( () => {
+        $('#colourSelector .swatch').each(function(){
+            $(this).css("background-color", $(this).attr("data-colour") );
+        });
+        $('#colourSelector').on('click', '.swatch', function(){
+            let colour = $(this).attr("data-colour");
+            changeTheme(colour);
+        });
+        $("#hue").click(function(ev){
+            let y = ev.offsetY;
+            if (y < 0 ) y = 0;
+            if (y > $(this).height() ) y = $(this).height();
+            $(this).children().css("top", y);
+            updateColours();
+        });
+        $("#hue").on('mousemove', function(ev){
+            if (ev.buttons != 1) return;
+
+            let y = ev.offsetY;
+            if (y < 0 ) y = 0;
+            if (y > $(this).height() ) y = $(this).height();
+            $(this).children().css("top", y);
+            updateColours();
+        })
+
+        $("#brightness").click(function(ev){
+            let x = ev.offsetX;
+            let y = ev.offsetY;
+
+            if (x < 0 ) x = 0;
+            if (x > $(this).width() ) x = $(this).width();
+
+            if (y < 0) y = 0;
+            if (y > $(this).height() ) y = $(this).height();
+
+            $(this).children().css("left", x);
+            $(this).children().css("top", y);
+
+            updateColours();
+        });
+        $("#brightness").on('mousemove', function(ev){
+            if (ev.buttons != 1) return;
+            let x = ev.offsetX;
+            let y = ev.offsetY;
+
+            if (x < 0 ) x = 0;
+            if (x > $(this).width() ) x = $(this).width();
+
+            if (y < 0) y = 0;
+            if (y > $(this).height() ) y = $(this).height();
+
+            $(this).children().css("left", x);
+            $(this).children().css("top", y);
+
+            updateColours();
+        });
+
+        $('#pickerButton').click(function(ev){
+            if ($("#colourSelector").hasClass("active")) {
+                $("#colourSelector").removeClass("active");
+                $('#pickerButton').removeClass("active");
+            } else {
+                $("#colourSelector").addClass("active");
+                $('#pickerButton').addClass("active");
+            }
+            ev.stopPropagation();
+        });
+        $('body').click(function(ev){
+            if (
+                ev.target != $("#colourSelector")[0] &&
+                ev.target != $("#pickerButton")[0] &&
+                ev.target != $("#brightness")[0] &&
+                ev.target != $("#hue")[0]
+            ) {
+                $("#colourSelector").removeClass("active");
+                $('#pickerButton').removeClass("active");
+            }
+        });
+        updateColours();
+    });
+    function updateColours() {
+        let height = $('#hue').height();
+
+
+        let hue = 1- parseInt( $('#hue .picker').css('top'), 10) / height;
+        let sat = parseInt( $('#brightness .picker').css('left'), 10) / height;
+        let val = 1 - (parseInt( $('#brightness .picker').css('top'), 10) / height);
+
+
+        let rgb = HSVtoRGB(hue, sat, val);
+
+        // Update broader picker
+        // background: radial-gradient(circle at top right, red 20%, transparent 80%);
+        let rgb_max = HSVtoRGB(hue, 1, 1);
+        $('#brightness').css('background', `radial-gradient(circle at top right, rgb(${rgb_max.r},${rgb_max.g},${rgb_max.b}) 20%, transparent 80%)`)
+        
+        let r = rgb.r.toString(16);
+        let g = rgb.g.toString(16);;
+        let b = rgb.b.toString(16);
+        
+        if (r.length <= 1) r = `0${r}`;
+        if (g.length <= 1) g = `0${g}`;
+        if (b.length <= 1) b = `0${b}`;
+
+        let hex = `#${r}${g}${b}`;
+        changeTheme(hex);
+
+    }
+    function changeTheme(colour) {
+        let colourLight = modifyColour(colour, 0.2);
+        let colourDark = modifyColour(colour, -0.2);
+        $("style[data-theme]").remove();
+        $("head").append(`
+            <style data-theme="${colour}">
+                .theme-background {
+                    background:${colour};
+                }
+                .theme-color {
+                    color:${colour};
+                }
+                .theme-background-hover:hover {
+                    background:${colour};
+                }
+                .theme-color-hover:hover {
+                    color:${colour};
+                }
+
+                .theme-background-dark {
+                    background:${colourDark};
+                }
+                .theme-color-dark {
+                    color: ${colourDark};
+                }
+                .theme-background-dark-hover:hover {
+                    background: ${colourDark};
+                }
+                .theme-color-dark-hover:hover {
+                    color: ${colourDark};
+                }
+
+                .theme-background-light {
+                    background: ${colourLight};
+                }
+                .theme-color-light {
+                    color: ${colourLight};
+                }
+                .theme-background-light-hover:hover {
+                    background: ${colourLight};
+                }
+                .theme-color-light-hover:hover {
+                    color: ${colourLight};
+                }
+            </style>
+        `);
+    }
+    // Source: https://stackoverflow.com/a/17243070/1522641
+    function HSVtoRGB(h, s, v) {
+        var r, g, b, i, f, p, q, t;
+        if (arguments.length === 1) {
+            s = h.s, v = h.v, h = h.h;
+        }
+        i = Math.floor(h * 6);
+        f = h * 6 - i;
+        p = v * (1 - s);
+        q = v * (1 - f * s);
+        t = v * (1 - (1 - f) * s);
+        switch (i % 6) {
+            case 0: r = v, g = t, b = p; break;
+            case 1: r = q, g = v, b = p; break;
+            case 2: r = p, g = v, b = t; break;
+            case 3: r = p, g = q, b = v; break;
+            case 4: r = t, g = p, b = v; break;
+            case 5: r = v, g = p, b = q; break;
+        }
+        return {
+            r: Math.round(r * 255),
+            g: Math.round(g * 255),
+            b: Math.round(b * 255)
+        };
+    }
+    function modifyColour(hex, lum) {
+
+        // validate hex string
+        hex = String(hex).replace(/[^0-9a-f]/gi, '');
+        if (hex.length < 6) {
+            hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+        }
+        lum = lum || 0;
+
+        // convert to decimal and change luminosity
+        var rgb = "#", c, i;
+        for (i = 0; i < 3; i++) {
+            c = parseInt(hex.substr(i*2,2), 16);
+            c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
+            rgb += ("00"+c).substr(c.length);
+        }
+
+        return rgb;
+    }
     var vm = new Vue({
         el: 'body',
         ready: function() {
@@ -1128,6 +1465,11 @@ for (i = 0; i < close.length; i++) {
     }
 }
 </script>
-<center><b><a href="https://goo.gl/DMeCli" target="_blank">Suggestions/Bugs</a></b></center>
+            <center>
+                <br/>
+                <a href="https://goo.gl/DMeCli" class="btn theme-background theme-background-light-hover" target="_blank">Suggestions/Bugs</a>
+            </center>
+        </div>
+    </div>
 </body>
 </html>
