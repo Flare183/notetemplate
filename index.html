@@ -160,6 +160,31 @@
         .hidden {
             display: none;
         }
+        .alert.info {background-color: #2196F3;}
+        .alert {
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 8px;
+}
+        .closebtn {
+    margin-right: 15px;
+    color: white;
+    font-weight: bold;
+    float: left;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+        .alert.success {background-color: #4CAF50;}
+.alert.info {background-color: #2196F3;}
+.alert.warning {background-color: #ff9800;}
+
+.closebtn:hover {
+    color: black;
     </style>
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -174,6 +199,10 @@
 </head>
 <body>
 <h1>Note Template</h1>
+    <div class="alert info">
+  <span class="closebtn">&times;</span>  
+  <strong>Los Angeles Router Upgrade 17th July:</strong> We will be doing a network upgrade in our Los Angeles location on July 17, 2017 at 4pm CST.  We anticipate a network interruption of approximately 1 hour. The website will be down during this period.
+</div>
 <textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="2"></textarea>
 <div class="form">
 
@@ -1082,6 +1111,18 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
             }
         }
     });
+</script>
+    <script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+    close[i].onclick = function(){
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+    }
+}
 </script>
 <center><b><a href="https://goo.gl/DMeCli" target="_blank">Suggestions/Bugs</a></b></center>
 </body>
