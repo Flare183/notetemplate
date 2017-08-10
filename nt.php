@@ -11,8 +11,11 @@ if(!$fgmembersite->CheckLogin())
 
 <!DOCTYPE html>
 <html lang="en">
-<!-- Note template created and modified by Charles Yost / Joseph Moran --
-  -- / Jesse N. Richardson v0.2.50 -->
+ <!-- Note template created by Charles Yost / Joseph Moran --
+    -- Contributors:
+    -- Jesse N. Richardson 
+    -- Thomas Edwards     
+    -->
 <head>
     <link rel="icon" type="image/png" href="favicon.ico">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -269,6 +272,9 @@ if(!$fgmembersite->CheckLogin())
         <select name="outage" v-model="outage">
             <option v-for="option in outageOptions" :value="option">{{ option }}</option>
         </select>
+        
+        <label for="OpenSO">Open TT/SO</label>
+        <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
 
         <hr>
         <label for="router">Broadband Home Router</label>
@@ -310,9 +316,6 @@ if(!$fgmembersite->CheckLogin())
         </select>
 
         <hr>
-
-        <label for="OpenSO">Open TT/SO</label>
-        <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
 
         <label for="issue">Issue</label>
         <input type="text" placeholder="Reason For Calling (ex. No Internet, Email Issue)" name="issue" v-model="issue" />
@@ -373,6 +376,9 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
         <select name="outage" v-model="outage">
             <option v-for="option in outageOptions" :value="option">{{ option }}</option>
         </select>
+        
+        <label for="OpenSO">Open TT/SO</label>
+        <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
 
         <hr>
         <label for="filters">Checked Filters</label>
@@ -380,9 +386,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
             <option v-for="option in filtersOptions" :value="option">{{ option }}</option>
         </select>
         <hr>
-
-        <label for="OpenSO">Open TT/SO</label>
-        <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
 
         <label for="issue">Issue</label>
         <input type="text" placeholder="Reason For Calling (ex. No Dial Tone, Can't Call Out)" name="issue" v-model="issue"/>
@@ -444,6 +447,9 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
         <select name="outage" v-model="outage">
             <option v-for="option in outageOptions" :value="option">{{ option }}</option>
         </select>
+        
+        <label for="OpenSO">Open TT/SO</label>
+        <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
         <hr>
         <label for="modem">Modem</label>
         <select name="modem" v-model="modem">
@@ -485,9 +491,6 @@ OBSERVED NOISE MARGIN (DB):15 15
 SIGNAL ATTENUATION (DB):29 14" name="loopcare" cols="20" rows="5" v-model="loopcare"></textarea>
 
         <hr >
-
-        <label for="OpenSO">Open TT/SO</label>
-        <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
 
         <label for="issue">Issue</label>
         <input type="text" placeholder="Reason For Calling (ex. No Internet, Email Issue)" name="issue" v-model="issue" />
@@ -582,6 +585,9 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
         <select name="outage" v-model="outage">
             <option v-for="option in outageOptions" :value="option">{{ option }}</option>
         </select>
+        
+        <label for="OpenSO">Open TT/SO</label>
+        <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
 
         <hr>
         <label for="modem">Modem</label>
@@ -600,9 +606,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
         <input type="text" name="diag" v-model="diag">
 
         <hr>
-
-        <label for="OpenSO">Open TT/SO</label>
-        <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
 
         <label for="issue">Issue</label>
         <input type="text" name="issue" v-model="issue" />
@@ -672,7 +675,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'speakingWith', display: 'Speaking With'},
                             {name: 'verified', display: 'Verified'},
                             {name: 'email', display: 'Email'},
-                            {name: 'outage', display: 'Outage'}
+                            {name: 'outage', display: 'Outage'},
+                            {name: 'OpenSO', display: 'Open TT/SO'}
                         ],
                         [
                             {name: 'modem', display: 'Modem'},
@@ -689,7 +693,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
 
                         ],
                         [
-                            {name: 'OpenSO', display: 'Open TT/SO'},
                             {name: 'issue', display: 'Issue'},
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
                         ],
@@ -715,7 +718,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'speakingWith', display: 'Speaking With'},
                             {name: 'verified', display: 'Verified'},
                             {name: 'email', display: 'Email'},
-                            {name: 'outage', display: 'Outage'}
+                            {name: 'outage', display: 'Outage'},
+                            {name: 'OpenSO', display: 'Open TT/SO'}
                         ],
                         [
                             {name: 'router', display: 'Broadband Home Router'},
@@ -728,7 +732,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'staticIp', display: 'Static IP'}
                         ],
                         [
-                            {name: 'OpenSO', display: 'Open TT/SO'},
                             {name: 'issue', display: 'Issue'},
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
                         ],
@@ -773,7 +776,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'speakingWith', display: 'Speaking With'},
                             {name: 'verified', display: 'Verified'},
                             {name: 'email', display: 'Email'},
-                            {name: 'outage', display: 'Outage'}
+                            {name: 'outage', display: 'Outage'},
+                            {name: 'OpenSO', display: 'Open TT/SO'}
                         ],
                         [
                             {name: 'modem', display: 'Modem'},
@@ -783,7 +787,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'diag', display: "Diagnostics"}
                         ],
                         [
-                            {name: 'OpenSO', display: 'Open TT/SO'},
                             {name: 'issue', display: 'Issue'},
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
                         ],
@@ -810,13 +813,14 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'speakingWith', display: 'Speaking With'},
                             {name: 'verified', display: 'Verified'},
                             {name: 'email', display: 'Email'},
-                            {name: 'outage', display: 'Outage'}
+                            {name: 'outage', display: 'Outage'},
+                            {name: 'OpenSO', display: 'Open TT/SO'}
                         ],
                         [
                             {name: 'filters', display: 'Filters'}
                         ],
                         [
-                            {name: 'OpenSO', display: 'Open TT/SO'},
+                            
                             {name: 'issue', display: 'Issue'},
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
                         ],
@@ -875,7 +879,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                 outageOptions: [
                     '',
                     'No Outages Present',
-                    'Customer is in an Outage'
+                    'Customer is in an Outage',
+                    'Customer is Trending'
                 ],
                 filtersOptions: [
                     '',
