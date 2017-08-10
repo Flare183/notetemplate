@@ -361,7 +361,7 @@ if(!$fgmembersite->CheckLogin())
     <div class="alert info">
         <div class="closebtn">&times;</div>
         <div>  
-            <strong>Los Angeles Router Upgrade 17th July:</strong> We will be doing a network upgrade in our Los Angeles location on July 17, 2017 at 4pm CST.  We anticipate a network interruption of approximately 1 hour. The website will be down during this period.
+            <strong>Info:</strong> Shout to Brie for pointing out its August. Silly coding mistakes.
         </div>
     </div>
 <textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="2"></textarea>
