@@ -219,7 +219,7 @@ if(!$fgmembersite->CheckLogin())
     <link href="skins/default.css" id="cpswitch" rel="stylesheet">
     <script src="dist/jquery.colorpanel.js"></script>
 </head>
-<body>
+<body onbeforeunload="return confirm('Are you sure you want to close this ');">
     <?php include_once("analyticstracking.php") ?>
  <div id="colorPanel" class="colorPanel">
         <a id="cpToggle" href="#"></a>
