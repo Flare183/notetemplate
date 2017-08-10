@@ -15,7 +15,8 @@ if(!$fgmembersite->CheckLogin())
     <!-- Note template created by Charles Yost / Joseph Moran --
     -- Contributors:
     -- Jesse N. Richardson 
-    -- Thomas Edwards     
+    -- Thomas Edwards   
+    -- Brett Bryant
     -->
     <head>
         <link rel="icon" type="image/png" href="favicon.ico">
@@ -347,7 +348,7 @@ if(!$fgmembersite->CheckLogin())
 
         </script>
     </head>
-<body class="theme-background">
+<body onbeforeunload="return confirm('Are you sure you want to close this ');" class="theme-background">
     <div id="content">
         <div id="panel">
         <h1>Note Template</h1>
@@ -1160,7 +1161,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'verified', display: 'Verified'},
                             {name: 'email', display: 'Email'},
                             {name: 'outage', display: 'Outage'},
-                            
+                            {name: 'OpenSO', display: 'Open TT/SO'}
                         ],
                         [
                             {name: 'filters', display: 'Filters'}
