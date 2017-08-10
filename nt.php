@@ -1472,7 +1472,7 @@ for (i = 0; i < close.length; i++) {
 </script>
             <center>
                 <br/>
-                <a href="https://goo.gl/DMeCli" class="btn theme-background theme-background-light-hover" target="_blank">Suggestions/Bugs</a>
+                <a href="javascript:window.open('/feedback', 'Feedback', 'width=650,height=370');" class="btn theme-background theme-background-light-hover">Suggestions/Bugs</a>
             </center>
         </div>
     </div>
