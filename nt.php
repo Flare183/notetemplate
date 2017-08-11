@@ -361,7 +361,7 @@ if(!$fgmembersite->CheckLogin())
     <div class="alert info">
         <div class="closebtn">&times;</div>
         <div>  
-            <strong>Info:</strong> Shout to Brie for pointing out its August. Silly coding mistakes.
+            <strong>Info:</strong> Welcome Team Marchon~! Please don't hesitate to provide feedback for any issues you encounter or things you'd like added!
         </div>
     </div>
 <textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="2"></textarea>
@@ -1067,7 +1067,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'staticIp', display: 'Static IP'}
                         ],
                         [
-                            {name: 'OpenSO', display: 'Open TT/SO'},
                             {name: 'issue', display: 'Issue'},
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
                         ],
@@ -1123,7 +1122,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'diag', display: "Diagnostics"}
                         ],
                         [
-                            {name: 'OpenSO', display: 'Open TT/SO'},
                             {name: 'issue', display: 'Issue'},
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
                         ],
@@ -1157,7 +1155,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'filters', display: 'Filters'}
                         ],
                         [
-                            {name: 'OpenSO', display: 'Open TT/SO'},
                             {name: 'issue', display: 'Issue'},
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
                         ],
