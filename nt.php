@@ -364,7 +364,7 @@ if(!$fgmembersite->CheckLogin())
             <strong>Info:</strong> Welcome Team Marchon~! Please don't hesitate to provide feedback for any issues you encounter or things you'd like added!
         </div>
     </div>
-<textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="2"></textarea>
+<textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="3"></textarea>
 <div class="form">
 
     <div align="center" class="main-nav clear">
@@ -1004,6 +1004,9 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                     name: 'DSL',
                     attributes: [
                         [
+                            {name: 'issue', display: '(!) Issue'}
+                        ],
+                        [
                             {name: 'btn', display: 'BTN'},
                             {name: 'ctn', display: 'CTN'},
                             {name: 'accountHolder', display: 'Acct Holder'},
@@ -1028,7 +1031,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
 
                         ],
                         [
-                            {name: 'issue', display: 'Issue'},
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
                         ],
                         [
@@ -1046,6 +1048,9 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                 {
                     name: 'FiOS',
                     attributes: [
+                        [
+                            {name: 'issue', display: '(!) Issue'}
+                        ],
                         [
                             {name: 'btn', display: 'BTN'},
                             {name: 'ctn', display: 'CTN'},
@@ -1067,7 +1072,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'staticIp', display: 'Static IP'}
                         ],
                         [
-                            {name: 'issue', display: 'Issue'},
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
                         ],
                         [
@@ -1086,6 +1090,9 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                     name: 'PHAT',
                     attributes: [
                         [
+                            {name: 'issue', display: '(!) Issue'}
+                        ],
+                        [
                             {name: 'btn', display: 'BTN'},
                             {name: 'ctn', display: 'CTN'},
                             {name: 'accountHolder', display: 'Acct Holder'},
@@ -1095,7 +1102,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'email', display: 'Email'}
                         ],
                         [
-                            {name: 'issue', display: 'Issue'},
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
                         ]
                     ],
@@ -1104,6 +1110,9 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                 {
                     name: 'SAT',
                     attributes: [
+                          [
+                            {name: 'issue', display: '(!) Issue'}
+                        ],
                         [
                             {name: 'btn', display: 'BTN'},
                             {name: 'ctn', display: 'CTN'},
@@ -1122,7 +1131,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'diag', display: "Diagnostics"}
                         ],
                         [
-                            {name: 'issue', display: 'Issue'},
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
                         ],
                         [
@@ -1142,6 +1150,9 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                     name: 'POTS',
                     attributes: [
                         [
+                            {name: 'issue', display: '(!) Issue'}
+                        ],
+                        [
                             {name: 'btn', display: 'BTN'},
                             {name: 'ctn', display: 'CTN'},
                             {name: 'accountHolder', display: 'Acct Holder'},
@@ -1155,7 +1166,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'filters', display: 'Filters'}
                         ],
                         [
-                            {name: 'issue', display: 'Issue'},
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
                         ],
                         [
