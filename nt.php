@@ -8,16 +8,28 @@ if(!$fgmembersite->CheckLogin())
 }
 ?>
 
+<!-- This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-<!DOCTYPE html>
-<html lang="en">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Note template created by Charles Yost / Joseph Moran --
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    Note template created by Charles Yost / Joseph Moran --
     -- Contributors:
     -- Jesse N. Richardson 
     -- Thomas Edwards   
     -- Brett Bryant
     -->
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
         <link rel="icon" type="image/png" href="favicon.ico">
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -1167,7 +1179,7 @@ for (i = 0; i < close.length; i++) {
 </script>
             <center>
                 <br/>
-                <a href="javascript:window.open('/feedback', 'Feedback', 'width=650,height=370');" class="btn theme-background theme-background-light-hover">Suggestions/Bugs</a>
+                <a href="javascript:window.open('/feedback', 'Feedback', 'width=650,height=370');" class="btn theme-background theme-background-light-hover">Suggestions/Bugs</a><br /><a href="javascript:window.open('https://www.gnu.org/licenses/agpl-3.0.html', 'Feedback', 'width=650,height=370');"><img style="width:44px;height:16px;" src="https://www.gnu.org/graphics/gplv3-88x31.png" /> </a>
             </center>
         </div>
     </div>
