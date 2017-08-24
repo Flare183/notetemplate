@@ -289,6 +289,7 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
         <select name="modem" v-model="modem">
             <option v-for="option in modemOptions" :value="option">{{ option }}</option>
         </select>
+        
         <label for="othermodem"></label>
         <input type="text" name="othermodem" v-model="othermodem" placeholder="Other Modem" value="" />
 
@@ -757,7 +758,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'survey', display: 'Survey'}
                         ]
                     ],
-                    uniqueFields: ['modem', 'lights', 'lightsAfterPc', 'areaOfHighDemand', 'loopcare', 'radius', 'dsllightso']
+                    uniqueFields: ['modem', 'othermodem', 'lights', 'lightsAfterPc', 'areaOfHighDemand', 'loopcare', 'radius', 'dsllightso']
                 },
                 {
                     name: 'FiOS',
@@ -1194,7 +1195,7 @@ for (i = 0; i < close.length; i++) {
 </script>
             <center>
                 <br/>
-                <a href="javascript:window.open('/feedback', 'Feedback', 'width=650,height=370');" class="btn theme-background theme-background-light-hover">Suggestions/Bugs</a><br /><a href="javascript:window.open('https://www.gnu.org/licenses/agpl-3.0.html', 'Feedback', 'width=650,height=370');"><img style="width:44px;height:16px;" src="https://www.gnu.org/graphics/gplv3-88x31.png" /> </a>
+                <a href="javascript:window.open('/feedback', 'Feedback', 'width=650,height=370');" class="btn theme-background theme-background-light-hover">Suggestions/Bugs</a><br /><a href="javascript:window.open('https://www.gnu.org/licenses/agpl-3.0.html', 'Feedback', 'width=650,height=370');"><br /><img style="width:44px;height:16px;" src="https://www.gnu.org/graphics/gplv3-88x31.png" /> </a>
             </center>
         </div>
     </div>
