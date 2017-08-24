@@ -777,7 +777,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'OpenSO', display: 'Open TT/SO'}
                         ],
                         [
-                            {name: 'router', display: 'Broadband Home Router'},
+                            {name: 'router', display: 'Router'},
+                            {name: 'othermodem', display: 'Router'},
                             {name: 'routerlights', display: "Router Lights"},
                             {name: 'setTopBox', display: 'Set Top-Box'},
                             {name: 'phoneType', display: 'Phone Type'},
@@ -1022,7 +1023,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                     'MI424WR',
                     'Westell 9100EM',
                     'Zyxel/HPNA',
-                    'Westell 9100VM'
+                    'Westell 9100VM',
+                    'Other'
                 ],
                 setTopBoxOptions: [
                     '',
