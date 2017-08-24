@@ -110,12 +110,12 @@ if(!$fgmembersite->CheckLogin())
 
         <hr>
         <label for="router">Broadband Home Router</label>
-        <select name="router" v-model="router">
+        <select name="router" v-model="router"  onchange="if ($('select[name=router]').val() == 'Other') { $('input[name=otherrouter]').css('display', 'block'); } else { $('input[name=otherrouter]').css('display', 'none').val(''); } ">>
             <option v-for="option in routerOptions" :value="option">{{ option }}</option>
         </select>
         
-        <label for="othermodem"></label>
-        <input type="text" name="othermodem" v-model="othermodem" placeholder="Other Router" value="" />
+        <label for="otherrouter"></label>
+        <input type="text" name="otherrouter" v-model="otherrouter" style="display: none;" placeholder="Other Router" value="" />
 
         <label for="routerlights">Router Lights</label>
         <input type="text" placeholder="Router lights (ex. WAN Light Green, Wifi Off, Amber Internet)" name="routerlights" v-model="routerlights" />
@@ -289,12 +289,12 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
         <hr>
         
         <label for="modem">Modem</label>
-        <select name="modem" v-model="modem">
+        <select name="modem" v-model="modem"  onchange="if ($('select[name=modem]').val() == 'Other') { $('input[name=othermodem]').css('display', 'block'); } else { $('input[name=othermodem]').css('display', 'none').val(''); } ">
             <option v-for="option in modemOptions" :value="option">{{ option }}</option>
         </select>
         
         <label for="othermodem"></label>
-        <input type="text" name="othermodem" v-model="othermodem" placeholder="Other Modem" value="" />
+        <input type="text" name="othermodem" v-model="othermodem" style="display: none;" placeholder="Other Modem" value="" />
 
         <label for="lights">Lights</label>
         <select name="lights" v-model="lights">
@@ -501,17 +501,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
 <script>
 
     $(document).ready( () => {
-
-        $("input[name='othermodem']").css('display', 'none');
-
-        $("select[name='modem']").change(function() {
-            if ($(this).val() == "Other") {
-                 $("input[name='othermodem']").css('display', 'block');
-            } else {
-                 $("input[name='othermodem']").css('display', 'none');
-                 $("input[name='othermodem']").val('');
-            }
-        });
         $('#colourSelector .swatch').each(function(){
             $(this).css("background-color", $(this).attr("data-colour") );
         });
@@ -781,7 +770,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                         ],
                         [
                             {name: 'router', display: 'Router'},
-                            {name: 'othermodem', display: 'Router'},
+                            {name: 'otherrouter', display: 'Router'},
                             {name: 'routerlights', display: "Router Lights"},
                             {name: 'setTopBox', display: 'Set Top-Box'},
                             {name: 'phoneType', display: 'Phone Type'},
@@ -1172,7 +1161,9 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             continue;
                         }
 
-                        if (attribute.trim() !== '' && (group[index].name != "modem" || !this['othermodem'].length)) {
+                        if (attribute.trim() !== '' && 
+                            (group[index].name != "modem" || !this['othermodem'].length) &&
+                            (group[index].name != "router" || !this['otherrouter'].length)) {
                             summary += attributeName + ': ' + attribute + '\n';
                         }
                     }
