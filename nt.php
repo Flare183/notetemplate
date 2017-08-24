@@ -113,6 +113,9 @@ if(!$fgmembersite->CheckLogin())
         <select name="router" v-model="router">
             <option v-for="option in routerOptions" :value="option">{{ option }}</option>
         </select>
+        
+        <label for="othermodem"></label>
+        <input type="text" name="othermodem" v-model="othermodem" placeholder="Other Router" value="" />
 
         <label for="routerlights">Router Lights</label>
         <input type="text" placeholder="Router lights (ex. WAN Light Green, Wifi Off, Amber Internet)" name="routerlights" v-model="routerlights" />
