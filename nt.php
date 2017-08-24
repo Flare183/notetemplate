@@ -589,6 +589,8 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
         <select name="modem" v-model="modem">
             <option v-for="option in modemOptions" :value="option">{{ option }}</option>
         </select>
+        <label for="othermodem"></label>
+        <input type="text" name="othermodem" v-model="othermodem" placeholder="Other Modem" value="" />
 
         <label for="lights">Lights</label>
         <select name="lights" v-model="lights">
@@ -795,6 +797,17 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
 <script>
 
     $(document).ready( () => {
+
+        $("input[name='othermodem']").css('display', 'none');
+
+        $("select[name='modem']").change(function() {
+            if ($(this).val() == "Other") {
+                 $("input[name='othermodem']").css('display', 'block');
+            } else {
+                 $("input[name='othermodem']").css('display', 'none');
+                 $("input[name='othermodem']").val('');
+            }
+        });
         $('#colourSelector .swatch').each(function(){
             $(this).css("background-color", $(this).attr("data-colour") );
         });
@@ -1018,6 +1031,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                         ],
                         [
                             {name: 'modem', display: 'Modem'},
+                            {name: 'othermodem', display: 'Modem'},
                             {name: 'lights', display: 'Lights'},
                             {name: 'lightsAfterPc', display: 'Lights After PC'},
                             {name: 'dsllightso', display: 'Other Lights'}
@@ -1190,6 +1204,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                 accountHolder: '',
                 speakingWith: '',
                 email: '',
+                othermodem: '',
                 satcase:'',
                 diag:'',
                 verified: '',
