@@ -1167,7 +1167,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             continue;
                         }
 
-                        if (attribute.trim() !== '') {
+                        if (attribute.trim() !== '' && (group[index].name != "modem" || !this['othermodem'].length)) {
                             summary += attributeName + ': ' + attribute + '\n';
                         }
                     }
