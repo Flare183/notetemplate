@@ -1118,6 +1118,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                 }
 
                 $("input[name^=other]").hide();
+                $("select[name=multi-dwelling-unit]").val('');
 
                 this.scrollToTop(150);
 
@@ -1161,6 +1162,10 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             }
                             summary += attributeName + ': ' + attribute.join(', ') + '\n';
                             continue;
+                        }
+
+                        if (attributeName == "Multi-Dwelling Unit") {
+                            attribute = $('select[name=multi-dwelling-unit]').val();
                         }
 
                         if (attribute.trim() !== '' && 
