@@ -131,7 +131,7 @@ if(!$fgmembersite->CheckLogin())
         </select>
 
         <label for="Optical-Network-Terminal">Optical Network Terminal</label>
-        <select name="Optical-Network-Terminal" v-model="opticalNetworkTerminal">
+        <select name="Optical-Network-Terminal" v-model="opticalNetworkTerminal" onchange="updateMDU()">
             <option v-for="option in opticalNetworkTerminalOptions" :value="option">{{ option }}</option>
         </select>
 
@@ -1118,6 +1118,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                 }
 
                 $("input[name^=other]").hide();
+                $("select[name=multi-dwelling-unit]").val('');
 
                 this.scrollToTop(150);
 
@@ -1163,6 +1164,10 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             continue;
                         }
 
+                        if (attributeName == "Multi-Dwelling Unit") {
+                            attribute = $('select[name=multi-dwelling-unit]').val();
+                        }
+
                         if (attribute.trim() !== '' && 
                             (group[index].name != "modem" || !this['othermodem'].length) &&
                             (group[index].name != "router" || !this['otherrouter'].length)) {
@@ -1191,7 +1196,8 @@ for (i = 0; i < close.length; i++) {
     }
 }
 </script>
-            <center>
+<script tpye="text/javascript" src="js/mdu-auto-select.js"></script>
+        <center>
                 <br/>
                 <a href="javascript:window.open('/feedback', 'Feedback', 'width=650,height=370');" class="btn theme-background theme-background-light-hover">Suggestions/Bugs</a><br /><a href="javascript:window.open('https://www.gnu.org/licenses/agpl-3.0.html', 'Feedback', 'width=650,height=370');"><br /><img style="width:44px;height:16px;" src="https://www.gnu.org/graphics/gplv3-88x31.png" /> </a>
             </center>
