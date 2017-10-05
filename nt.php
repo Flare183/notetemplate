@@ -61,7 +61,7 @@ if(!$fgmembersite->CheckLogin())
     <div class="alert info">
         <div class="closebtn">&times;</div>
         <div>  
-            <strong>Info:</strong> From the Note Template Team: Our thoughts are with the Hurricane Harvey and Irma Victims.
+            <strong>Info:</strong> We are saddened by the news in Las Vegas this week. Our thoughts and hearts are with those affected.
         </div>
     </div>
 <textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="3"></textarea>
