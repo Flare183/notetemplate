@@ -430,11 +430,11 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
         <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
 
         <hr>
-        <label for="modem">Modem</label>
-        <input type="text" name="modem" v-model="modem">
+        <label for="SATmodem">Modem</label>
+        <input type="text" name="SATmodem" v-model="SATmodem">
 
-        <label for="router">Router</label>
-        <input type="text" name="router" v-model="router">
+        <label for="SATrouter">Router</label>
+        <input type="text" name="SATrouter" v-model="SATrouter">
 
         <label for="satlights">Lights</label>
         <input type="text" name="satlights" v-model="satlights">
@@ -832,8 +832,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'OpenSO', display: 'Open TT/SO'}
                         ],
                         [
-                            {name: 'modem', display: 'Modem'},
-                            {name: 'router', display: 'Router'},
+                            {name: 'SATmodem', display: 'Modem'},
+                            {name: 'SATrouter', display: 'Router'},
                             {name: 'satlights', display: 'Lights'},
                             {name: 'SANID', display: "SAN ID"},
                             {name: 'diag', display: "Diagnostics"}
@@ -901,6 +901,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                 othermodem: '',
                 satcase:'',
                 diag:'',
+                SATmodem:'',
+                SATrouter:'',
                 verified: '',
                 modem: '',
                 lights: '',
