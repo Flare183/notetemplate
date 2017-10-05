@@ -72,8 +72,6 @@ if(!$fgmembersite->CheckLogin())
             <strong>Info:</strong> We are saddened by the news in Las Vegas this week. Our thoughts and hearts are with those affected.
         </div>
     </div>
-    
-    
 <textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="3"></textarea>
 <div class="form">
 
@@ -441,7 +439,9 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
 
         <hr>
         <label for="SATmodem">Modem</label>
-        <input type="text" name="SATmodem" v-model="SATmodem">
+        <select name="SATmodem" v-model="SATmodem">
+            <option v-for="option in SATmodemOptions" :value="option">{{ option }}</option>
+        </select>
 
         <label for="SATrouter">Router</label>
         <input type="text" name="SATrouter" v-model="SATrouter">
@@ -802,7 +802,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'survey', display: 'Survey'}
                         ]
                     ],
-                    uniqueFields: ['router', 'ontstatus', 'setTopBox', 'phoneType', 'opticalNetworkTerminal', 'multiDwellingUnit', 'staticIp']
+                    uniqueFields: ['router', 'otherrouter', 'ontstatus', 'setTopBox', 'phoneType', 'opticalNetworkTerminal', 'multiDwellingUnit', 'staticIp']
                 },
                 {
                     name: 'PHAT',
@@ -862,7 +862,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'survey', display: 'Survey'}
                         ]
                     ],
-                    uniqueFields: ['router', 'SANID', 'diag', 'satcase', 'satlights']
+                    uniqueFields: ['SATrouter', 'SATmodem', 'SANID', 'diag', 'satcase', 'satlights']
                 },
                 {
                     name: 'POTS',
@@ -963,6 +963,12 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                     'Yes - Cris ID',
                     'Yes - Called BTN',
                     'No'
+                ],
+                SATmodemOptions: [
+                    '',
+                    'HN9000',
+                    'HT1000',
+                    'HT1100'
                 ],
                 ontstatusOptions: [
                     '',
