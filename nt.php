@@ -58,12 +58,22 @@ if(!$fgmembersite->CheckLogin())
                 <div class="picker"></div>
             </div>
         </div>
+            <div class="alert">
+        <span class="closebtn">&times;</span>
+        <strong>Warning:&nbsp;</strong> VDSL and Bonded lines are now performing modem replacements as normal. Please follow a LOLA workflow to contact the modem replacement team instead of placing a ticket.
+    </div>
+            <div class="alert warning">
+        <span class="closebtn">&times;</span>  
+        <strong>Alert:&nbsp;</strong>Make sure you are using the new AOHD DSL CLLI tool to determine if the customer is in an Area of High Demand <a target="_blank" href="http://nmars.corp.pvt/dashboards/lola/dslamCheck.php">AOHD Tool</a>
+    </div>
     <div class="alert info">
         <div class="closebtn">&times;</div>
         <div>  
             <strong>Info:</strong> We are saddened by the news in Las Vegas this week. Our thoughts and hearts are with those affected.
         </div>
     </div>
+    
+    
 <textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="3"></textarea>
 <div class="form">
 
