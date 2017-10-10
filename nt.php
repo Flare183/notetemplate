@@ -318,10 +318,8 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
         <input type="text" placeholder="Other Lights (ex. Ethernet Light Off, Wifi Light Off" name="dsllightso" v-model="dsllightso" />
 
         <hr>
-        <label for="area-of-high-demand">AOHD</label>
-        <select name="area-of-high-demand" v-model="areaOfHighDemand">
-            <option v-for="option in areaOfHighDemandOptions" :value="option">{{ option }}</option>
-        </select>
+        <label for="area-of-high-demand">NMARS Results</label>
+        <input placeholder="LAVLOHAGBB0	Congestion Exists for Device. Area of High Demand" type="text" name="AOHD" v-model="AOHD">
 
         <label for="filters">Checked Filters</label>
         <select name="filters" v-model="filters">
@@ -741,7 +739,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
 
                         ],
                         [
-                            {name: 'areaOfHighDemand', display: 'AOHD'},
+                            {name: 'AOHD', display: 'NMARS'},
                             {name: 'filters', display: 'Filters'},
                             {name: 'radius', display: 'Radius'},
                             {name: 'loopcare', display: 'Loopcare/ALU 5530'}
@@ -917,7 +915,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                 modem: '',
                 lights: '',
                 lightsAfterPc: '',
-                areaOfHighDemand: '',
+                AOHD: '',
                 router:'',
                 dslcable:'',
                 setTopBox:'',
@@ -1008,12 +1006,6 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                     'Power Red',
                     'No Lights'
                 ],
-                areaOfHighDemandOptions: [
-                    '',
-                    'Yes',
-                    'No'
-                ],
-
                 phoneTypeOptions: [
                     '',
                     'TDM POTS',
