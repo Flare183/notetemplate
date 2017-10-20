@@ -27,6 +27,26 @@
                 fill: #eeeeee;
                 cursor:pointer;
             }
+      input#btn {
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+    padding-right: 80px;
+    width: 100%;
+}
+.wrapper {
+    position: relative;
+    width: 100%;
+}
+button#copy {
+    position: absolute;
+    top: 18.5px;
+    right: 0;
+    line-height: 31px;
+    padding-right: 20px;
+    padding-top: 0.1px;
+    width: 30px;
+}
             #scrollbutt {
                 display: none; /* Hidden by default */
                 position: fixed; /* Fixed/sticky position */

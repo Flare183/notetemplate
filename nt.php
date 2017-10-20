@@ -61,10 +61,10 @@ if(!$fgmembersite->CheckLogin())
                 <div class="picker"></div>
             </div>
         </div>
-            <div class="alert">
+        <!--    <div class="alert">
         <span class="closebtn">&times;</span>
         <strong>Warning:&nbsp;</strong> VDSL and Bonded lines are now performing modem replacements as normal. Please follow a LOLA workflow to contact the modem replacement team instead of placing a ticket.
-    </div>
+    </div> -->
             <div class="alert warning">
         <span class="closebtn">&times;</span>  
         <strong>Alert:&nbsp;</strong>Make sure you are using the new AOHD DSL CLLI tool to determine if the customer is in an Area of High Demand <a target="_blank" href="http://nmars.corp.pvt/dashboards/lola/dslamCheck.php">AOHD Tool</a>
@@ -72,7 +72,7 @@ if(!$fgmembersite->CheckLogin())
     <div class="alert info">
         <div class="closebtn">&times;</div>
         <div>  
-            <strong>Info:</strong> We are saddened by the news in Las Vegas this week. Our thoughts and hearts are with those affected.
+            <strong>Info:</strong> The copy button on the DSL template is in beta testing. Enjoy!
         </div>
     </div>
 <textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="3"></textarea>
@@ -269,8 +269,8 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
 
     <div v-if="current.name === 'DSL'">
 
-        <label for="btn">BTN</label>
-        <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" />
+        <div class="wrapper"><label for="btn">BTN</label>
+            <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#btn"></button></div><br /><br />
 
         <label for="ctn">CTN</label>
         <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" />
@@ -1252,5 +1252,51 @@ var     scrollCount = 0,
         }, 15 );
 }
 </script>
+    <script type="text/javascript">/*
+    Copy text from any appropriate field to the clipboard
+  By Craig Buckler, @craigbuckler
+  use it, abuse it, do whatever you like with it!
+*/
+(function() {
+
+    'use strict';
+  
+  // click events
+  document.body.addEventListener('click', copy, true);
+
+    // event handler
+    function copy(e) {
+
+    // find target element
+    var 
+      t = e.target,
+      c = t.dataset.copytarget,
+      inp = (c ? document.querySelector(c) : null);
+      
+    // is element selectable?
+    if (inp && inp.select) {
+      
+      // select text
+      inp.select();
+
+      try {
+        // copy text
+        document.execCommand('copy');
+        inp.blur();
+        
+        // copied animation
+        t.classList.add('copied');
+        setTimeout(function() { t.classList.remove('copied'); }, 1500);
+      }
+      catch (err) {
+        alert('please press Ctrl/Cmd+C to copy');
+      }
+      
+    }
+    
+    }
+
+})();
+    </script>
 </body>
 </html>
