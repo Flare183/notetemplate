@@ -27,6 +27,24 @@
                 fill: #eeeeee;
                 cursor:pointer;
             }
+            #scrollbutt {
+                display: none; /* Hidden by default */
+                position: fixed; /* Fixed/sticky position */
+                bottom: 20px; /* Place the button at the bottom of the page */
+                right: 30px; /* Place the button 30px from the right */
+                z-index: 99; /* Make sure it does not overlap */
+                border: 1px; /* Remove borders */
+                outline: none; /* Remove outline */
+                color: white; /* Text color */
+                cursor: pointer; /* Add a mouse pointer on hover */
+                padding: 15px; /* Some padding */
+                border-radius: 10px; /* Rounded corners */
+                background-color: black;
+            }
+            #scrollbutt:hover {
+                background-color: grey;
+                border: 1px;
+            }
             #pickerButton.active {
                 background:linear-gradient(to right, #dbdbdb 5%, #606060);
                 fill: #eeeeee;

