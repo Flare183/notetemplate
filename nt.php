@@ -275,8 +275,9 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
         <div class="wrapper"><label for="ctn">CTN</label>
         <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#ctn"></button></div>
 
-        <label for="account-holder">Acct Holder</label>
-        <input placeholder="Account Holder's Name" type="text" name="account-holder" v-model="accountHolder" />
+        <div class="wrapper"><label for="account-holder">Acct Holder</label>
+        <input placeholder="Account Holder's Name" id="account-holder" type="text" name="account-holder" v-model="accountHolder" />
+            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#account-holder"></button></div>
 
         <label for="speaking-with">Speaking With</label>
         <input type="text" placeholder="Caller's Name" name="speaking-with" v-model="speakingWith" />
@@ -287,7 +288,7 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
         </select>
 
         <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. loremipsum@mail.com)"  name="email" v-model="email" />
+        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" />
             <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#email"></button></div>
 
         <label for="Outage">Outage</label>

@@ -27,56 +27,54 @@
                 fill: #eeeeee;
                 cursor:pointer;
             }
-      input#btn {
-    float: left;
-    position: relative;
-    box-sizing: border-box;
-    padding-right: 80px;
-    width: 100%;
-}
-.wrapper {
-    position: relative;
-    width: 100%;
-}
-button#copy {
-    position: absolute;
-    top: 18.5px;
-    right: 0;
-    line-height: 31px;
-    padding-right: 20px;
-    padding-top: 0.1px;
-    width: 30px;
-}
-
-.copied::after {
-  position: absolute;
-  top: 0.01px;
-  right: 110%;
-    padding-bottom: 7px;
-  display: block;
-  content: "copied";
-  font-size: 0.75em;
-  padding: 2px 3px;
-  color: #fff;
-  background-color: #22a;
-  border-radius: 3px;
-  opacity: 0;
-  will-change: opacity, transform;
-  animation: showcopied 1.5s ease;
-}
-
-@keyframes showcopied {
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  70% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    }}
+            input#btn {
+            float: left;
+            position: relative;
+            box-sizing: border-box;
+            padding-right: 80px;
+            width: 100%;
+            }
+            .wrapper {
+            position: relative;
+            width: 100%;
+            }
+            button#copy {
+            position: absolute;
+            top: 18.5px;
+            right: 0;
+            line-height: 31px;
+            padding-right: 20px;
+            padding-top: 0.1px;
+            width: 30px;
+            }
+            .copied::after {
+            position: absolute;
+            top: 0.01px;
+            right: 110%;
+            padding-bottom: 7px;
+            display: block;
+            content: "copied";
+            font-size: 0.75em;
+            padding: 2px 3px;
+            color: #fff;
+            background-color: #22a;
+            border-radius: 3px;
+            opacity: 0;
+            will-change: opacity, transform;
+            animation: showcopied 1.5s ease;
+            }
+            @keyframes showcopied {
+            0% {
+            opacity: 0;
+            transform: translateX(100%);
+            }
+            70% {
+            opacity: 1;
+            transform: translateX(0);
+            }
+            100% {
+            opacity: 0;
+            }}
             #scrollbutt {
                 display: none; /* Hidden by default */
                 position: fixed; /* Fixed/sticky position */
