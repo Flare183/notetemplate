@@ -8,10 +8,10 @@ if(!$fgmembersite->CheckLogin())
 }
 
 $user_rec = array();
-if (false === $fgmembersite->GetUserFromEmail($_SESSION['email_of_user'], $user_rec)) {
-    $user_rec = array("user_id" => 0);
+if (false === $fgmembersite->GetUserFromEmail($fgmembersite->UserEmail(), &$user_rec)) {
+    $user_id = 0;
 }
-$user_id = $user_rec['user_id'];
+$user_id = intval($user_rec['user_id']);
 ?>
 
 
@@ -54,7 +54,7 @@ $user_id = $user_rec['user_id'];
             var u="//status.templateace.xyz/";
             _paq.push(['setTrackerUrl', u+'piwik.php']);
             _paq.push(['setSiteId', '2']);
-            _paw.push(['uid', '<?php echo intval($user_id); ?>']);
+            _paq.push(['uid', '<?php echo $user_id; ?>']);
             var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
             g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
           })();
