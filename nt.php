@@ -10,8 +10,8 @@ if(!$fgmembersite->CheckLogin())
 $user_rec = array();
 if (false === $fgmembersite->GetUserFromEmail($fgmembersite->UserEmail(), $user_rec)) {
     $user_id = 0;
-}
-$user_id = intval($user_rec['user_id']);
+} else
+    $user_id = intval($user_rec['id_user']);
 ?>
 
 
