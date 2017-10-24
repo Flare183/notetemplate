@@ -8,9 +8,9 @@ if(!$fgmembersite->CheckLogin())
 }
 
 $user_rec = array();
-if (false === $fgmembersite->GetUserFromEmail($fgmembersite->UserEmail(), $user_rec)) {
+if (false === $fgmembersite->GetUserFromEmail($fgmembersite->UserEmail(), $user_rec))
     $user_id = 0;
-} else
+else
     $user_id = intval($user_rec['id_user']);
 ?>
 
@@ -58,7 +58,7 @@ if (false === $fgmembersite->GetUserFromEmail($fgmembersite->UserEmail(), $user_
             g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
           })();
         </script>
-        <script type-:test/javascript">
+        <script type="test/javascript">
             $('body').onload(function () {
                 piwikTracker.setUserId('<?php echo $user_id; ?>');
             });
