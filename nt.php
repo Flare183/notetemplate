@@ -32,7 +32,7 @@ if (false === $fgmembersite->GetUserFromEmail($fgmembersite->UserEmail(), $user_
     -- Contributors:
     -- Jesse N. Richardson 
     -- Thomas Edwards   
-    -- Brett Bryant <?php var_dump($user_rec); ?>
+    -- Brett Bryant
     -->
 <!DOCTYPE html>
 <html lang="en">
@@ -54,10 +54,14 @@ if (false === $fgmembersite->GetUserFromEmail($fgmembersite->UserEmail(), $user_
             var u="//status.templateace.xyz/";
             _paq.push(['setTrackerUrl', u+'piwik.php']);
             _paq.push(['setSiteId', '2']);
-            _paq.push(['uid', '<?php echo $user_id; ?>']);
             var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
             g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
           })();
+        </script>
+        <script type-:test/javascript">
+            $('body').onload(function () {
+                piwikTracker.setUserId('<?php echo $user_id; ?>');
+            });
         </script>
         <!-- End Piwik Code -->
     </head>
