@@ -40,7 +40,6 @@ if(!$fgmembersite->CheckLogin())
         <script src="https://use.fontawesome.com/4251d2427b.js"></script>
     </head>
 <body onbeforeunload="return confirm('Are you sure you want to close this ');" class="theme-background">
-    <?php include_once("analyticstracking.php") ?>
     <button onclick="scrollToTop(1000)" class="theme-background theme-background-light-hover" id="scrollbutt"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
     <div id="content">
         <div id="panel">
