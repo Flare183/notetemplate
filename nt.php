@@ -6,6 +6,12 @@ if(!$fgmembersite->CheckLogin())
     $fgmembersite->RedirectToURL("index.php");
     exit;
 }
+
+$user_rec = array();
+if (false === $fgmembersite->GetUserFromEmail($_SESSION['email_of_user'], $user_rec)) {
+    $user_rec = array("user_id" => 0);
+}
+$user_id = $user_rec['user_id'];
 ?>
 
 
@@ -38,6 +44,22 @@ if(!$fgmembersite->CheckLogin())
         <meta charset="UTF-8">
         <title>Note Template</title>
         <script src="https://use.fontawesome.com/4251d2427b.js"></script>
+        <!-- Piwik -->
+        <script type="text/javascript">
+          var _paq = _paq || [];
+          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+          _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']);
+          (function() {
+            var u="//status.templateace.xyz/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', '2']);
+            _paw.push(['uid', '<?php echo intval($user_id); ?>']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+          })();
+        </script>
+        <!-- End Piwik Code -->
     </head>
 <body onbeforeunload="return confirm('Are you sure you want to close this ');" class="theme-background">
     <button onclick="scrollToTop(1000)" class="theme-background theme-background-light-hover" id="scrollbutt"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
