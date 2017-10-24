@@ -32,7 +32,7 @@ if (false === $fgmembersite->GetUserFromEmail($fgmembersite->UserEmail(), $user_
     -- Contributors:
     -- Jesse N. Richardson 
     -- Thomas Edwards   
-    -- Brett Bryant <?php var_dump($user_rec); ?>
+    -- Brett Bryant
     -->
 <!DOCTYPE html>
 <html lang="en">
