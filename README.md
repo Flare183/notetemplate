@@ -1,6 +1,6 @@
-# Project Title
+# Note Template
 
-One Paragraph of project description goes here
+A note template used at work to generate formatted notes for easier note taking during calls.
 
 ## Getting Started
 
@@ -11,56 +11,14 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 ```
-Give examples
+PHP, Server Enviroment
 ```
-
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [JQuery](https://github.com/jquery/jquery) - jQuery JavaScript Library
+* [Vue.js](https://github.com/vuejs/vue) - A progressive, incrementally-adoptable JavaScript framework for building UI on the web
+* [JavaScript Form Validator](http://www.javascript-coder.com/html-form/javascript-form-validation.phtml) - Form validation script
 
 ## Contributing
 
@@ -72,16 +30,18 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Charles Yost** - *Initial work* - [Co2Noss](https://github.com/Co2Noss/)
+* **Joseph Moran** - *Initial work* - [KnightVision90](https://github.com/KnightVision90)
+* **Thomas Edwards** - *Color Picker / CSS Overhaul* - [tmfksoft](https://github.com/tmfksoft)
+* **Brett Bryant** - *MDU Autoselector / Code Contribution* - [brettbryantgmail](https://github.com/brettbryantgmail)     
+* **Jesse Richardson** - *Code Cleanup* - [Flare183](https://github.com/Flare183)   
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Co2Noss/notetemplate/graphs/contributors) who participated in this project.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+Brie Yoe for lots and lots of suggestions.
+Abby Boehm and Jacob Foster for initial beta testing
