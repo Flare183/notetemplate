@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        
+    body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+	font-size: 1em;
+}
+
+.ui-draggable, .ui-droppable {
+	background-position: top;
+}
+        </style></head>
+    <body>
+        <input type="text" placeholder="Reason For Calling (ex. No Internet, Email Issue, No Dial Tone)" name="issue" id="issue" v-model="issue"/>
+        
+        <div id="pots" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="https://foswiki.telenetwork.com/Frontier/POTS" target="_blank">https://foswiki.telenetwork.com/Frontier/POTS</a></div>
+        
+        <div id="bras" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Red_No%20Internet%20Light.htm" target="_blank">Red/No Internet Light</a></div>
+        
+        <div id="sync" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/No%20DSL%20Sync.htm" target="_blank">No DSL Sync</a></div>
+        
+        <div id="wifi" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Can't%20Connect%20(Wireless).htm" target="_blank">Can't Connect (Wireless)</a></div>
+        
+        <div id="wired" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Can't%20Connect%20(Wired).htm" target="_blank">	Can't Connect (Wired)</a></div>
+        
+        <div id="cnb" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Green%20Internet%20Light%20(Can't%20Browse).htm" target="_blank">Green Internet But Can't Browse</a></div>
+        
+        <div id="power" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Possible%20Bad%20Modem%20(Power%20Issues).htm" target="_blank">Modem Power</a></div>
+        
+        <div id="slow" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Slow%20Speeds%20(Wired).htm" target="_blank">Slow Speeds (Wired)</a></div>
+        
+        <div id="freqdw" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Slow%20Speeds%20(Wireless).htm" target="_blank">Slow Speeds/Frequent Disconnects (Wireless)</a></div>
+        
+        <div id="freqdh" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Frequent%20Disconnects%20(Wired).htm" target="_blank">Frequent Disconnects (Wired)</a></div>
+        
+        <div id="email" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/e-mail/Emailindex.asp" target="_blank">Email Overview</a></div>
+        
+
+<script type="application/javascript">
+let pots = ["NDT", "No Dial Tone", "Static", "Voicemail Issue", "Voicemail", "Can't Call Out", "Can't Be Called", "Other's On The Line", "Party Line", "Noise On Line", "Custom Calling Feature", "Physical Damage", "Maintenance Ticket", "Can't Call Long Distance", "Long Distance"]
+let bras = ["Red Inet Can't Connect", "No BRAs", "No Internet Light", "No Inet Light"]
+let sync = ["No Sync", "Flashing DSL", "DSL Flashing", "No DSL Light"]
+let wifi = ["Wifi Password", "Can't Connect Wireless", "Wireless Password", "Wireless Speed", "Wifi Speed"]
+let wired = ["Can't Connect Wired", "Wired Issue"]
+let power = ["No Power", "Red Power Light", "Dead Modem", "Modem Rebooting", "No Lights"]
+let freqdw = ["Freq Disc", "Frequent Disconnects", "Internet Cutting in and Out", "Internet Dropping"]
+let freqdh = ["Freq Disc Wifi", "Frequent Disconnects Wireless", "Internet Dropping Wireless"]
+let email = ["Email"]
+let slow = ["Slow Speeds Wired", "Slow Speeds", "Internet Slow", "Slow Internet"]
+
+let mergedResults = pots.concat(bras, sync, wifi, cnb, power, freqdw, freqdh, email, wired, slow);
+let stuff = ['pots', 'bras', 'sync', 'wifi', 'cnb', 'power', 'freqdw', 'freqdh', 'email', 'wired', 'slow'];
+    
+    $("#issue").change(
+        
+        function () {
+            let code = $(this).val();
+            let thing = null;
+            let ret = false;
+
+            for (var i in stuff) {
+                if (typeof (thing = stuff[i]) == 'undefined')
+                    continue;
+                $('#' + thing).hide();
+                if (eval('$.inArray(code, ' + thing + ')') != -1) {
+                    $('#' + thing).show();
+                    ret = true;
+                }
+            }
+            return ret;
+        }
+    );
+        </script>
+        <script type="application/javascript">
+            $("#issue").autocomplete({
+    source: mergedResults,
+    minLength: 2,
+    select: function(event, ui) {
+        event.preventDefault();
+        $("#issue").val(ui.item.label);
+    }
+});
+</script>
+    </body></html>

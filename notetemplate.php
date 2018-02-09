@@ -23,6 +23,9 @@
 <html lang="en">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
+        <link rel="stylesheet" href="jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <link rel="icon" type="image/png" href="favicon.ico">
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="style.css">
@@ -51,13 +54,13 @@
                 <div class="picker"></div>
             </div>
         </div>
-        <!--    <div class="alert">
+        <div class="alert">
         <span class="closebtn">&times;</span>
-        <strong>Warning:&nbsp;</strong> VDSL and Bonded lines are now performing modem replacements as normal. Please follow a LOLA workflow to contact the modem replacement team instead of placing a ticket.
-    </div> -->
+        <strong>Warning:&nbsp;</strong> The Issue field now autocompletes and suggests a workflow! This feature is VERY beta!
+    </div> 
             <div class="alert warning">
         <span class="closebtn">&times;</span>  
-        <strong>Alert:&nbsp;</strong>If you are still waiting to complete a warm transfer after 30 seconds, update the customer, ensure the customer's account is well documented and then complete the transfer as cold. <a  target="_blank" href="http://techhelp.northcentralnetworks.com/VSC/Content/Job_Aids/Common/pandp/transfer_calls/transfer_calls.asp">Transferring Calls: LOLA</a>
+                <strong>Alert:&nbsp;</strong>If you are still waiting to complete a warm transfer after 30 seconds, update the customer, ensure the customer's account is well documented and then complete the transfer as cold. <a target="_blank" href="http://techhelp.northcentralnetworks.com/VSC/Content/Job_Aids/Common/pandp/transfer_calls/transfer_calls.asp"><b><ul>Transferring Calls: LOLA</b></ul></a>
     </div>
     <div class="alert info">
         <div class="closebtn">&times;</div>
@@ -76,7 +79,29 @@
 
 
     <label for="issue">Issue</label>
-    <input type="text" placeholder="Reason For Calling (ex. No Internet, Email Issue, No Dial Tone)" name="issue" v-model="issue"/>
+    <input type="text" placeholder="Reason For Calling (ex. No Internet, Email Issue, No Dial Tone)" name="issue" id="issue" v-model="issue"/>
+        
+    <div id="pots" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="https://foswiki.telenetwork.com/Frontier/POTS" target="_blank"><b>Foswiki: POTS</b></a></div>
+        
+        <div id="bras" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Red_No%20Internet%20Light.htm" target="_blank"><b>Red/No Internet Light</b></a></div>
+        
+        <div id="sync" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/No%20DSL%20Sync.htm" target="_blank"><b>No DSL Sync</b></a></div>
+        
+        <div id="wifi" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Can't%20Connect%20(Wireless).htm" target="_blank"><b>Can't Connect (Wireless)</b></a></div>
+        
+        <div id="wired" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Can't%20Connect%20(Wired).htm" target="_blank">	<b>Can't Connect (Wired)</b></a></div>
+        
+        <div id="cnb" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Green%20Internet%20Light%20(Can't%20Browse).htm" target="_blank"><b>Green Internet But Can't Browse</b></a></div>
+        
+        <div id="power" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Possible%20Bad%20Modem%20(Power%20Issues).htm" target="_blank"><b>Modem Power</b></a></div>
+        
+        <div id="slow" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Slow%20Speeds%20(Wired).htm" target="_blank"><b>Slow Speeds (Wired)</b></a></div>
+        
+        <div id="freqdw" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Slow%20Speeds%20(Wireless).htm" target="_blank"><b>Slow Speeds/Frequent Disconnects (Wireless)</b></a></div>
+        
+        <div id="freqdh" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Frequent%20Disconnects%20(Wired).htm" target="_blank"><b>Frequent Disconnects (Wired)</b></a></div>
+        
+        <div id="email" style="display:none;">Based on your issue we suggest this workflow: &nbsp;<a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/e-mail/Emailindex.asp" target="_blank"><b>Email Overview</b></a></div>
 
     <hr>
 
@@ -506,7 +531,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
 <h1>Results</h1> <font color="EEEEEE" align="right"> Steven D</font>
 <textarea name="copy" id="copy-input" cols="35" rows="20">{{ summary }}</textarea>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
 <script>
@@ -1292,6 +1317,50 @@ var     scrollCount = 0,
 })();
     </script>
 </script> 
+ <script type="application/javascript">
+let pots = ["NDT", "No Dial Tone", "Static", "Voicemail Issue", "Voicemail", "Can't Call Out", "Can't Be Called", "Other's On The Line", "Party Line", "Noise On Line", "Custom Calling Feature", "Physical Damage", "Maintenance Ticket", "Can't Call Long Distance", "Long Distance"]
+let bras = ["Red Inet Can't Connect", "No BRAs", "No Internet Light", "No Inet Light"]
+let sync = ["No Sync", "Flashing DSL", "DSL Flashing", "No DSL Light"]
+let wifi = ["Wifi Password", "Can't Connect Wireless", "Wireless Password", "Wireless Speed", "Wifi Speed"]
+let wired = ["Can't Connect Wired", "Wired Issue"]
+let power = ["No Power", "Red Power Light", "Dead Modem", "Modem Rebooting", "No Lights"]
+let freqdw = ["Freq Disc", "Frequent Disconnects", "Internet Cutting in and Out", "Internet Dropping"]
+let freqdh = ["Freq Disc Wifi", "Frequent Disconnects Wireless", "Internet Dropping Wireless"]
+let email = ["Email"]
+let slow = ["Slow Speeds Wired", "Slow Speeds", "Internet Slow", "Slow Internet"]
 
+let mergedResults = pots.concat(bras, sync, wifi, cnb, power, freqdw, freqdh, email, wired, slow);
+let stuff = ['pots', 'bras', 'sync', 'wifi', 'cnb', 'power', 'freqdw', 'freqdh', 'email', 'wired', 'slow'];
+    
+    $("#issue").change(
+        
+        function () {
+            let code = $(this).val();
+            let thing = null;
+            let ret = false;
+
+            for (var i in stuff) {
+                if (typeof (thing = stuff[i]) == 'undefined')
+                    continue;
+                $('#' + thing).hide();
+                if (eval('$.inArray(code, ' + thing + ')') != -1) {
+                    $('#' + thing).show();
+                    ret = true;
+                }
+            }
+            return ret;
+        }
+    );
+        </script>
+        <script type="application/javascript">
+            $("#issue").autocomplete({
+    source: mergedResults,
+    minLength: 2,
+    select: function(event, ui) {
+        event.preventDefault();
+        $("#issue").val(ui.item.label);
+    }
+});
+</script>
 </body>
 </html>
