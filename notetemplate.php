@@ -125,8 +125,7 @@
         </select>
 
         <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#email"></button></div>
+        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" /></div>
 
         <label for="Outage">Outage</label>
         <select name="outage" v-model="outage">
@@ -234,8 +233,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
         </select>
 
         <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#email"></button></div>
+        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" /></div>
 
         <label for="Outage">Outage</label>
         <select name="outage" v-model="outage">
@@ -307,8 +305,7 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
         </select>
 
         <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#email"></button></div>
+        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" /></div>
 
         <label for="Outage">Outage</label>
         <select name="outage" v-model="outage">
@@ -417,8 +414,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
         </select>
 
         <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#email"></button></div>
+        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" /></div>
 
         <hr>
         <label for="crisid">Cris ID</label>
@@ -452,8 +448,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
         </select>
 
         <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#email"></button></div>
+        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" /></div>
 
         <label for="Outage">Outage</label>
         <select name="outage" v-model="outage">
