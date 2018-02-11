@@ -475,6 +475,9 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
 
         <label for="diag">Diagnostics</label>
         <input type="text" name="diag" v-model="diag">
+        
+        <label for="visibility">Visibility</label>
+        <input type="text" name="visibility" v-model="visibility">
 
         <hr>
 
@@ -867,7 +870,8 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'SATrouter', display: 'Router'},
                             {name: 'satlights', display: 'Lights'},
                             {name: 'SANID', display: "SAN ID"},
-                            {name: 'diag', display: "Diagnostics"}
+                            {name: 'diag', display: "Diagnostics"},
+                            {name: 'visibility', display: "Visibility"}
                         ],
                         [
                             {name: 'troubleshooting', display: 'Troubleshooting/Call Notes'}
@@ -946,6 +950,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                 opticalNetworkTerminal:'',
                 multiDwellingUnit: '',
                 staticIp: '',
+                visibility: '',
                 OpenSO: '',
                 outage:'',
                 filters: '',
