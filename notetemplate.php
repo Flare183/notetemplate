@@ -887,7 +887,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                             {name: 'survey', display: 'Survey'}
                         ]
                     ],
-                    uniqueFields: ['SATrouter', 'SATmodem', 'SANID', 'diag', 'satcase', 'satlights']
+                    uniqueFields: ['SATrouter', 'SATmodem', 'SANID', 'diag', 'satcase', 'satlights', 'visibility']
                 },
                 {
                     name: 'POTS',
