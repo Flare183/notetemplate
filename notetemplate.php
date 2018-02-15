@@ -81,27 +81,27 @@
     <label for="issue">Issue</label>
     <input type="text" placeholder="Reason For Calling (ex. No Internet, Email Issue, No Dial Tone)" name="issue" id="issue" v-model="issue"/><br>Based on your issue we suggest this workflow:
         
-    <div id="pots" style="display:none;"><a href="https://foswiki.telenetwork.com/Frontier/POTS" target="_blank"><b>Foswiki: POTS</b></a></div>
+    <div id="pots" style="display:none;"><a href="https://goo.gl/X5Le6S" target="_blank"><b>Foswiki: POTS</b></a></div>
     
-    <div id="bras" style="display:none;"><a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Red_No%20Internet%20Light.htm" target="_blank"><b>Red/No Internet Light</b></a></div>
+    <div id="bras" style="display:none;"><a href="https://goo.gl/ikRWRH" target="_blank"><b>Red/No Internet Light</b></a></div>
         
-    <div id="sync" style="display:none;"><a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/No%20DSL%20Sync.htm" target="_blank"><b>No DSL Sync</b></a></div>
+    <div id="sync" style="display:none;"><a href="https://goo.gl/Edg5cq" target="_blank"><b>No DSL Sync</b></a></div>
         
-    <div id="wifi" style="display:none;"><a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Can't%20Connect%20(Wireless).htm" target="_blank"><b>Can't Connect (Wireless)</b></a></div>
+    <div id="wifi" style="display:none;"><a href="https://goo.gl/NGzpST" target="_blank"><b>Can't Connect (Wireless)</b></a></div>
         
-    <div id="wired" style="display:none;"><a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Can't%20Connect%20(Wired).htm" target="_blank">	<b>Can't Connect (Wired)</b></a></div>
+    <div id="wired" style="display:none;"><a href="https://goo.gl/Nxb7n6" target="_blank">	<b>Can't Connect (Wired)</b></a></div>
         
-    <div id="cnb" style="display:none;"><a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Green%20Internet%20Light%20(Can't%20Browse).htm" target="_blank"><b>Green Internet But Can't Browse</b></a></div>
+    <div id="cnb" style="display:none;"><a href="https://goo.gl/Z1SgUg" target="_blank"><b>Green Internet But Can't Browse</b></a></div>
         
-    <div id="power" style="display:none;"><a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Possible%20Bad%20Modem%20(Power%20Issues).htm" target="_blank"><b>Modem Power</b></a></div>
+    <div id="power" style="display:none;"><a href="https://goo.gl/2m4sVC" target="_blank"><b>Modem Power</b></a></div>
         
-    <div id="slow" style="display:none;"><a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Slow%20Speeds%20(Wired).htm" target="_blank"><b>Slow Speeds (Wired)</b></a></div>
+    <div id="slow" style="display:none;"><a href="https://goo.gl/wRQXxn" target="_blank"><b>Slow Speeds (Wired)</b></a></div>
         
-    <div id="freqdw" style="display:none;"><a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Slow%20Speeds%20(Wireless).htm" target="_blank"><b>Slow Speeds/Frequent Disconnects (Wireless)</b></a></div>
+    <div id="freqdw" style="display:none;"><a href="https://goo.gl/Uum9wx" target="_blank"><b>Slow Speeds/Frequent Disconnects (Wireless)</b></a></div>
         
-    <div id="freqdh" style="display:none;"><a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/troubleshooting_guidelines/workflows/interactive/Frequent%20Disconnects%20(Wired).htm" target="_blank"><b>Frequent Disconnects (Wired)</b></a></div>
+    <div id="freqdh" style="display:none;"><a href="https://goo.gl/27D4xu" target="_blank"><b>Frequent Disconnects (Wired)</b></a></div>
         
-    <div id="email" style="display:none;"><a href="http://techhelp.northcentralnetworks.com/vsc/content/support_reference/ihd/pc_dsl/e-mail/Emailindex.asp" target="_blank"><b>Email Overview</b></a></div>
+    <div id="email" style="display:none;"><a href="https://goo.gl/28iRnt" target="_blank"><b>Email Overview</b></a></div>
 
     <hr>
 
