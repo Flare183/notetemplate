@@ -692,13 +692,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                 ],
                 verifiedOptions: [
                     '',
-                    'Yes - SSN',
-                    'Yes - PIN',
-                    'Yes - DOB',
-                    'Yes - Security Q',
-                    'Yes - Tax ID',
-                    'Yes - Cris ID',
-                    'Yes - Called BTN',
+                    'Yes - Email',
                     'No'
                 ],
                 SATmodemOptions: [
