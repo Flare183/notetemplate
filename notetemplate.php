@@ -87,27 +87,12 @@
         <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" /></div>
         
         <hr>
-        
-        <label for="area-of-high-demand">NMARS Results</label>
-        <input placeholder="LAVLOHAGBB0	Congestion Exists for Device. Area of High Demand" type="text" name="AOHD" v-model="AOHD">
+	<div class="wrapper"><label for="account-holder">PTS Link</label>
+        <input placeholder="PTS Link" id="account-holder" type="text" name="account-holder" v-model="accountHolder" />
+        <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#account-holder"></button></div>
 
-        <label for="filters">Checked Filters</label>
-        <select name="filters" v-model="filters">
-            <option v-for="option in filtersOptions" :value="option">{{ option }}</option>
-        </select>
-
-        <label for="radius">Radius</label>
-        <input placeholder="What credentials are they using? What are the cause of the drops? How many drops?" type="text" name="radius" v-model="radius">
-		
-		<label for="loopcare">Loopcare/ALU 5530</label>
-        <textarea placeholder="VER 0U Recommendation
-TEST OK - LINE IN USE
-PORT ADMIN STATUS: IN SERVICE - NORMAL
-OBSERVED NOISE MARGIN (DB):15 15
-SIGNAL ATTENUATION (DB):29 14" name="loopcare" cols="20" rows="5" v-model="loopcare"></textarea>
-
-        <hr >
-
+	<hr>
+	
         <label for="issue">Issue</label>
         <input type="text" placeholder="Reason For Calling (ex. No Internet, Email Issue)" name="issue" v-model="issue" />
 
@@ -116,30 +101,7 @@ SIGNAL ATTENUATION (DB):29 14" name="loopcare" cols="20" rows="5" v-model="loopc
 
         <hr>
 
-        <label for="approved-by">Approved By</label>
-        <input type="text" name="approved-by" placeholder="Who Approved Your Ticket (ex. L2 Charles)" v-model="approvedBy" />
 
-        <label for="ticket">Ticket Information</label>
-        <textarea placeholder="Ticket Number 003249143
-Commit Time 22:00
-Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
-
-        <hr>
-
-        <label for="offered-f-secure">Offered F-Secure</label>
-        <select name="offered-f-secure" v-model="offeredFSecure">
-            <option v-for="option in offeredFSecureOptions" :value="option.value">{{ option.name }}</option>
-        </select>
-
-        <label for="has-Credit"></label>
-        <div v-for="option in hasCreditOptions">
-            <input type="radio" v-model="hasCredit" class="checkbox" :value="option"> {{ option }}
-        </div>
-
-        <label for="survey">Survey</label>
-        <select name="survey" v-model="survey">
-            <option v-for="option in surveyOptions" :value="option">{{ option }}</option>
-        </select>
     </div>
 
     <div v-if="current.name === 'PHAT'">
@@ -498,7 +460,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
                         [
                             {name: 'btn', display: 'BTN'},
                             {name: 'ctn', display: 'CTN'},
-                            {name: 'accountHolder', display: 'Acct Holder'},
+                            {name: 'accountHolder', display: 'PTS Link'},
                             {name: 'speakingWith', display: 'Speaking With'},
                             {name: 'verified', display: 'Verified'},
                             {name: 'email', display: 'Email'},
