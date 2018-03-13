@@ -1,5 +1,3 @@
-
-
 <!-- This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -54,235 +52,20 @@
                 <div class="picker"></div>
             </div>
         </div>
-        <div class="alert">
-        <span class="closebtn">&times;</span>
-        <strong>Warning:&nbsp;</strong> The Issue field now autocompletes and suggests a workflow! This feature is VERY beta!
-    </div> 
-            <div class="alert warning">
-        <span class="closebtn">&times;</span>  
-                <strong>Alert:&nbsp;</strong>If you are still waiting to complete a warm transfer after 30 seconds, update the customer, ensure the customer's account is well documented and then complete the transfer as cold. <a target="_blank" href="http://techhelp.northcentralnetworks.com/VSC/Content/Job_Aids/Common/pandp/transfer_calls/transfer_calls.asp"><b><ul>Transferring Calls: LOLA</b></ul></a>
-    </div>
-    <div class="alert info">
-        <div class="closebtn">&times;</div>
-        <div>  
-            <strong>Info:</strong> We are pushing updates regularly again! If you have any comments/suggestions spark/email Charles Yost!
-        </div>
-    </div>
+
 <textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="3"></textarea>
 <div class="form">
 
-    <div align="center" class="main-nav clear">
-        <span class="theme-background theme-background-light-hover" v-for="type in types" @click="setCurrentType(type)">{{ type.name | capitalize }}</span>
-    </div>
+
 
     <hr>
 
 
     <label for="issue">Issue</label>
-    <input type="text" placeholder="Reason For Calling (ex. No Internet, Email Issue, No Dial Tone)" name="issue" id="issue" v-model="issue"/><br>Based on your issue we suggest this workflow:
+    <input type="text" placeholder="Reason For Calling (ex. No Internet, Email Issue, No Dial Tone)" name="issue" id="issue" v-model="issue"/><br>
         
-    <div id="pots" style="display:none;"><a href="https://goo.gl/X5Le6S" target="_blank"><b>Foswiki: POTS</b></a></div>
-    
-    <div id="bras" style="display:none;"><a href="https://goo.gl/ikRWRH" target="_blank"><b>Red/No Internet Light</b></a></div>
-        
-    <div id="sync" style="display:none;"><a href="https://goo.gl/Edg5cq" target="_blank"><b>No DSL Sync</b></a></div>
-        
-    <div id="wifi" style="display:none;"><a href="https://goo.gl/NGzpST" target="_blank"><b>Can't Connect (Wireless)</b></a></div>
-        
-    <div id="wired" style="display:none;"><a href="https://goo.gl/Nxb7n6" target="_blank">	<b>Can't Connect (Wired)</b></a></div>
-        
-    <div id="cnb" style="display:none;"><a href="https://goo.gl/Z1SgUg" target="_blank"><b>Green Internet But Can't Browse</b></a></div>
-        
-    <div id="power" style="display:none;"><a href="https://goo.gl/2m4sVC" target="_blank"><b>Modem Power</b></a></div>
-        
-    <div id="slow" style="display:none;"><a href="https://goo.gl/wRQXxn" target="_blank"><b>Slow Speeds (Wired)</b></a></div>
-        
-    <div id="freqdw" style="display:none;"><a href="https://goo.gl/Uum9wx" target="_blank"><b>Slow Speeds/Frequent Disconnects (Wireless)</b></a></div>
-        
-    <div id="freqdh" style="display:none;"><a href="https://goo.gl/27D4xu" target="_blank"><b>Frequent Disconnects (Wired)</b></a></div>
-        
-    <div id="email" style="display:none;"><a href="https://goo.gl/28iRnt" target="_blank"><b>Email Overview</b></a></div>
 
     <hr>
-
-    <div v-if="current.name === 'FiOS'"> <!-- FIOS START -->
-        <div class="wrapper"><label for="btn">BTN</label>
-            <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#btn"></button></div><br /><br />
-
-        <div class="wrapper"><label for="ctn">CTN</label>
-        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#ctn"></button></div>
-
-        <div class="wrapper"><label for="account-holder">Acct Holder</label>
-        <input placeholder="Account Holder's Name" id="account-holder" type="text" name="account-holder" v-model="accountHolder" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#account-holder"></button></div>
-
-        <label for="speaking-with">Speaking With</label>
-        <input type="text" placeholder="Caller's Name" name="speaking-with" v-model="speakingWith" />
-
-        <label for="verified">Verified</label>
-        <select name="verified" v-model="verified">
-            <option v-for="option in verifiedOptions" :value="option">{{ option }}</option>
-        </select>
-
-        <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" /></div>
-
-        <label for="Outage">Outage</label>
-        <select name="outage" v-model="outage">
-            <option v-for="option in outageOptions" :value="option">{{ option }}</option>
-        </select>
-        
-        <label for="OpenSO">Open TT/SO</label>
-        <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
-
-        <hr>
-        <label for="router">Broadband Home Router</label>
-        <select name="router" v-model="router"  onchange="if ($('select[name=router]').val() == 'Other') { $('input[name=otherrouter]').css('display', 'block'); } else { $('input[name=otherrouter]').css('display', 'none').val(''); } ">>
-            <option v-for="option in routerOptions" :value="option">{{ option }}</option>
-        </select>
-        
-        <label for="otherrouter"></label>
-        <input type="text" name="otherrouter" v-model="otherrouter" style="display: none;" placeholder="Other Router" value="" />
-
-        <label for="routerlights">Router Lights</label>
-        <input type="text" placeholder="Router lights (ex. WAN Light Green, Wifi Off, Amber Internet)" name="routerlights" v-model="routerlights" />
-
-        <label for="Set-Top-Box">Set Top-Box</label>
-        <select name="setTopBox" v-model="setTopBox">
-            <option v-for="option in setTopBoxOptions" :value="option">{{ option }}</option>
-        </select>
-
-        <label for="Phone-Type">Phone Type</label>
-        <select name="phoneType" v-model="phoneType">
-            <option v-for="option in phoneTypeOptions" :value="option">{{ option }}</option>
-        </select>
-
-        <label for="Optical-Network-Terminal">Optical Network Terminal</label>
-        <select name="Optical-Network-Terminal" v-model="opticalNetworkTerminal" onchange="updateMDU()">
-            <option v-for="option in opticalNetworkTerminalOptions" :value="option">{{ option }}</option>
-        </select>
-
-        <label for="ontstatus">ONT Status</label>
-        <select name="ontstatus" v-model="ontstatus">
-            <option v-for="option in ontstatusOptions" :value="option">{{ option }}</option>
-        </select>
-
-        <label for="multi-dwelling-unit">Multi-Dwelling Unit</label>
-        <select name="multi-dwelling-unit" v-model="multiDwellingUnit">
-            <option v-for="option in multiDwellingUnitOptions" :value="option">{{ option }}</option>
-        </select>
-
-        <label for="static-ip">Static IP</label>
-        <select name="static-ip" v-model="staticIp">
-            <option v-for="option in staticIpOptions" :value="option">{{ option }}</option>
-        </select>
-
-        <hr>
-
-        <label for="issue">Issue</label>
-        <input type="text" placeholder="Reason For Calling (ex. No Internet, Email Issue)" name="issue" v-model="issue" />
-
-        <label for="troubleshooting">Troubleshooting/Call Notes</label>
-        <textarea placeholder="What steps did you take during the call?" name="troubleshooting" cols="30" rows="10" v-model="troubleshooting"></textarea>
-        <hr>
-
-        <label for="approved-by">Approved By</label>
-        <input type="text" name="approved-by" placeholder="Who Approved Your Ticket (ex. L2 Charles)" v-model="approvedBy" />
-
-        <label for="ticket">Ticket Information</label>
-        <textarea placeholder="Ticket Number 003249143
-Commit Time 22:00
-Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
-
-        <hr>
-
-        <label for="offered-f-secure">Offered F-Secure</label>
-        <select name="offered-f-secure" v-model="offeredFSecure">
-            <option v-for="option in offeredFSecureOptions" :value="option.value">{{ option.name }}</option>
-        </select>
-
-        <label for="has-Credit"></label>
-        <div v-for="option in hasCreditOptions">
-            <input type="radio" v-model="hasCredit" class="checkbox" :value="option"> {{ option }}
-        </div>
-
-        <label for="survey">Survey</label>
-        <select name="survey" v-model="survey">
-            <option v-for="option in surveyOptions" :value="option">{{ option }}</option>
-        </select>
-
-    </div>
-    <div v-if="current.name === 'POTS'">
-
-        <div class="wrapper"><label for="btn">BTN</label>
-            <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#btn"></button></div><br /><br />
-
-        <div class="wrapper"><label for="ctn">CTN</label>
-        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#ctn"></button></div>
-
-        <div class="wrapper"><label for="account-holder">Acct Holder</label>
-        <input placeholder="Account Holder's Name" id="account-holder" type="text" name="account-holder" v-model="accountHolder" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#account-holder"></button></div>
-
-        <label for="speaking-with">Speaking With</label>
-        <input type="text" placeholder="Caller's Name" name="speaking-with" v-model="speakingWith" />
-
-        <label for="verified">Verified</label>
-        <select name="verified" v-model="verified">
-            <option v-for="option in verifiedOptions" :value="option">{{ option }}</option>
-        </select>
-
-        <div class="wrapper"><label for="email">Email</label>
-        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" /></div>
-
-        <label for="Outage">Outage</label>
-        <select name="outage" v-model="outage">
-            <option v-for="option in outageOptions" :value="option">{{ option }}</option>
-        </select>
-        
-        <label for="OpenSO">Open TT/SO</label>
-        <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
-
-        <hr>
-        <label for="filters">Checked Filters</label>
-        <select name="filters" v-model="filters">
-            <option v-for="option in filtersOptions" :value="option">{{ option }}</option>
-        </select>
-        <hr>
-
-        <label for="issue">Issue</label>
-        <input type="text" placeholder="Reason For Calling (ex. No Dial Tone, Can't Call Out)" name="issue" v-model="issue"/>
-
-        <label for="troubleshooting">Troubleshooting/Call Notes</label>
-        <textarea placeholder="What steps did you take during the call?" name="troubleshooting" cols="30" rows="10" v-model="troubleshooting"></textarea>
-
-        <hr>
-
-        <label for="approved-by">Approved By</label>
-        <input type="text" name="approved-by" placeholder="Who Approved Your Ticket (ex. L2 Charles)" v-model="approvedBy" />
-
-        <label for="ticket">Ticket Information</label>
-        <textarea type="text" placeholder="(Ticket Number 003249143
-Commit Time 22:00
-Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
-
-        <hr>
-
-        <label for="offered-f-secure">Offered F-Secure</label>
-        <select name="offered-f-secure" v-model="offeredFSecure">
-            <option v-for="option in offeredFSecureOptions" :value="option.value">{{ option.name }}</option>
-        </select>
-
-        <label for="has-Credit"></label>
-        <div v-for="option in hasCreditOptions">
-            <input type="radio" v-model="hasCredit" class="checkbox" :value="option"> {{ option }}
-        </div>
-
-        <label for="survey">Survey</label>
-        <select name="survey" v-model="survey">
-            <option v-for="option in surveyOptions" :value="option">{{ option }}</option>
-        </select>
-    </div>
 
     <div v-if="current.name === 'DSL'">
 
@@ -292,10 +75,6 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
         <div class="wrapper"><label for="ctn">CTN</label>
         <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#ctn"></button></div>
 
-        <div class="wrapper"><label for="account-holder">Acct Holder</label>
-        <input placeholder="Account Holder's Name" id="account-holder" type="text" name="account-holder" v-model="accountHolder" />
-            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#account-holder"></button></div>
-
         <label for="speaking-with">Speaking With</label>
         <input type="text" placeholder="Caller's Name" name="speaking-with" v-model="speakingWith" />
 
@@ -306,39 +85,9 @@ Commit Date 4/17)" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
 
         <div class="wrapper"><label for="email">Email</label>
         <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" /></div>
-
-        <label for="Outage">Outage</label>
-        <select name="outage" v-model="outage">
-            <option v-for="option in outageOptions" :value="option">{{ option }}</option>
-        </select>
-        
-        <label for="OpenSO">Open TT/SO</label>
-        <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
         
         <hr>
         
-        <label for="modem">Modem</label>
-        <select name="modem" v-model="modem"  onchange="if ($('select[name=modem]').val() == 'Other') { $('input[name=othermodem]').css('display', 'block'); } else { $('input[name=othermodem]').css('display', 'none').val(''); } ">
-            <option v-for="option in modemOptions" :value="option">{{ option }}</option>
-        </select>
-        
-        <label for="othermodem"></label>
-        <input type="text" name="othermodem" v-model="othermodem" style="display: none;" placeholder="Other Modem" value="" />
-
-        <label for="lights">Lights</label>
-        <select name="lights" v-model="lights">
-            <option v-for="option in lightOptions" :value="option">{{ option }}</option>
-        </select>
-
-        <label for="lights-after-pc">Lights After PC</label>
-        <select name="lights-after-pc" v-model="lightsAfterPc">
-            <option v-for="option in lightOptions" :value="option">{{ option }}</option>
-        </select>
-
-        <label for="dsllightso">Other Lights</label>
-        <input type="text" placeholder="Other Lights (ex. Ethernet Light Off, Wifi Light Off" name="dsllightso" v-model="dsllightso" />
-
-        <hr>
         <label for="area-of-high-demand">NMARS Results</label>
         <input placeholder="LAVLOHAGBB0	Congestion Exists for Device. Area of High Demand" type="text" name="AOHD" v-model="AOHD">
 
