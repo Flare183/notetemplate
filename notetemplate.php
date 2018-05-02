@@ -16,6 +16,8 @@
     -- Jesse N. Richardson 
     -- Thomas Edwards   
     -- Brett Bryant
+
+       Modified for OST
     -->
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +58,9 @@
 <textarea name="stickynotes" placeholder="This is a memo section" id="stickynotes" cols="2" rows="3"></textarea>
 <div class="form">
 
-
+    <div align="center" class="main-nav clear">
+        <span class="theme-background theme-background-light-hover" v-for="type in types" @click="setCurrentType(type)">{{ type.name | capitalize }}</span>	
+    </div>
 
     <hr>
 
@@ -67,7 +71,7 @@
 
     <hr>
 
-    <div v-if="current.name === 'DSL'">
+    <div v-if="current.name === 'OST'">
 
         <div class="wrapper"><label for="btn">BTN</label>
             <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#btn"></button></div><br /><br />
@@ -101,6 +105,115 @@
 
         <hr>
 
+
+    </div>
+
+
+        <div v-if="current.name === 'FiOS'"> <!-- FIOS START -->
+        <div class="wrapper"><label for="btn">BTN/WTN</label>
+            <!-- maxlength="10" --><input id="btn" placeholder="BTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="btn" v-model="btn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#btn"></button></div><br /><br />
+
+        <div class="wrapper"><label for="ctn">CTN</label>
+        <input id="ctn" placeholder="CTN (ex. 5553271423)" onchange="this.value=this.value.replace(/[([).*:+='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\]\\-]/g,'')" type="text" name="ctn" v-model="ctn" /><button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#ctn"></button></div>
+
+        <div class="wrapper"><label for="account-holder">Acct Holder</label>
+        <input placeholder="Account Holder's Name" id="account-holder" type="text" name="account-holder" v-model="accountHolder" />
+            <button id="copy" class="fa fa-1x fa-clipboard" data-copytarget="#account-holder"></button></div>
+
+        <label for="speaking-with">Speaking With</label>
+        <input type="text" placeholder="Caller's Name" name="speaking-with" v-model="speakingWith" />
+
+        <label for="verified">Verified</label>
+        <select name="verified" v-model="verified">
+            <option v-for="option in verifiedOptions" :value="option">{{ option }}</option>
+        </select>
+
+        <div class="wrapper"><label for="email">Email</label>
+        <input id="email"  type="text" placeholder="Email (ex. brie.yoe@telenetwork.com)"  name="email" v-model="email" /></div>
+
+        <label for="Outage">Outage</label>
+        <select name="outage" v-model="outage">
+            <option v-for="option in outageOptions" :value="option">{{ option }}</option>
+        </select>
+        
+        <label for="OpenSO">Open TT/SO</label>
+        <input type="text" placeholder="(ex. 000000123 RES PHY CHNG)" name="OpenSO" v-model="OpenSO">
+
+        <hr>
+        <label for="router">Broadband Home Router</label>
+        <select name="router" v-model="router"  onchange="if ($('select[name=router]').val() == 'Other') { $('input[name=otherrouter]').css('display', 'block'); } else { $('input[name=otherrouter]').css('display', 'none').val(''); } ">>
+            <option v-for="option in routerOptions" :value="option">{{ option }}</option>
+        </select>
+        
+        <label for="otherrouter"></label>
+        <input type="text" name="otherrouter" v-model="otherrouter" style="display: none;" placeholder="Other Router" value="" />
+
+        <label for="routerlights">Router Lights</label>
+        <input type="text" placeholder="Router lights (ex. WAN Light Green, Wifi Off, Amber Internet)" name="routerlights" v-model="routerlights" />
+
+        <label for="Set-Top-Box">Set Top-Box</label>
+        <select name="setTopBox" v-model="setTopBox">
+            <option v-for="option in setTopBoxOptions" :value="option">{{ option }}</option>
+        </select>
+
+        <label for="Phone-Type">Phone Type</label>
+        <select name="phoneType" v-model="phoneType">
+            <option v-for="option in phoneTypeOptions" :value="option">{{ option }}</option>
+        </select>
+
+        <label for="Optical-Network-Terminal">Optical Network Terminal</label>
+        <select name="Optical-Network-Terminal" v-model="opticalNetworkTerminal" onchange="updateMDU()">
+            <option v-for="option in opticalNetworkTerminalOptions" :value="option">{{ option }}</option>
+        </select>
+
+        <label for="ontstatus">ONT Status</label>
+        <select name="ontstatus" v-model="ontstatus">
+            <option v-for="option in ontstatusOptions" :value="option">{{ option }}</option>
+        </select>
+
+        <label for="multi-dwelling-unit">Multi-Dwelling Unit</label>
+        <select name="multi-dwelling-unit" v-model="multiDwellingUnit">
+            <option v-for="option in multiDwellingUnitOptions" :value="option">{{ option }}</option>
+        </select>
+
+        <label for="static-ip">Static IP</label>
+        <select name="static-ip" v-model="staticIp">
+            <option v-for="option in staticIpOptions" :value="option">{{ option }}</option>
+        </select>
+
+        <hr>
+
+        <label for="issue">Issue</label>
+        <input type="text" placeholder="Reason For Calling (ex. No Internet, Email Issue)" name="issue" v-model="issue" />
+
+        <label for="troubleshooting">Troubleshooting/Call Notes</label>
+        <textarea placeholder="What steps did you take during the call?" name="troubleshooting" cols="30" rows="10" v-model="troubleshooting"></textarea>
+        <hr>
+
+        <label for="approved-by">Approved By</label>
+        <input type="text" name="approved-by" placeholder="Who Approved Your Ticket (ex. L2 Charles)" v-model="approvedBy" />
+
+        <label for="ticket">Ticket Information</label>
+        <textarea placeholder="Ticket Number 003249143
+Commit Time 22:00
+Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3"></textarea>
+
+        <hr>
+
+        <label for="offered-f-secure">Offered F-Secure</label>
+        <select name="offered-f-secure" v-model="offeredFSecure">
+            <option v-for="option in offeredFSecureOptions" :value="option.value">{{ option.name }}</option>
+        </select>
+
+        <label for="has-Credit"></label>
+        <div v-for="option in hasCreditOptions">
+            <input type="radio" v-model="hasCredit" class="checkbox" :value="option"> {{ option }}
+        </div>
+
+        <label for="survey">Survey</label>
+        <select name="survey" v-model="survey">
+            <option v-for="option in surveyOptions" :value="option">{{ option }}</option>
+        </select>
 
     </div>
 
@@ -452,7 +565,7 @@ Commit Date 4/17" type="text" name="ticket" v-model="ticket" cols="20" rows="3">
         data: function() {
             var types = [
                 {
-                    name: 'DSL',
+                    name: 'OST',
                     attributes: [
                         [
                             {name: 'issue', display: '(!) Issue'}
